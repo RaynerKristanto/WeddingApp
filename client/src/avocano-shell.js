@@ -21,6 +21,7 @@ import routes from './utils/routes.js';
 import styles from './styles/shell.js';
 
 // Pages
+import './pages/sign-in.js';
 import './pages/home.js';
 import './pages/checkout.js';
 import './pages/contact.js';
@@ -151,6 +152,9 @@ export class AvocanoShell extends router(LitElement) {
             .cart=${this.state.cart}
           ></app-header>
           <app-main active-route=${this.route}>
+          <div class="route" route="sign-in">
+              <app-sign-in></app-sign-in>
+            </div>
             <div class="route" route="home">
               <app-home></app-home>
             </div>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+   
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -12,6 +13,12 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://www.gstatic.com/firebasejs/8.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/8.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/8.0/firebase-ui-auth.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/firebaseui@5.x.x/dist/firebaseui.js"></script> 
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/firebaseui@5.x.x/dist/firebaseui.css"/>
+
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <base href="/" />
     <style>
@@ -25,6 +32,31 @@
   </head>
   <body>
     <avocano-shell></avocano-shell>
+    <div id="firebaseui-auth-container"></div>
+
+    <!-- <script>
+    var config = {
+      apiKey: "AIzaSyAntDVs4c7i_TPAqFXVhztEJRXd7Xj63u0",
+      authDomain: "fair-backbone-447521-d8.firebaseapp.com",
+    };
+    firebase.initializeApp(config);
+    </script> -->
+    <script>
+      var uiConfig = {
+  // Add your configurations
+  signInSuccessUrl: '/your-app/dashboard', // URL to redirect after successful sign-in. Replace with your URL!
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    // Add other providers as needed (Facebook, Twitter, etc.)
+  ],
+  //Optional:  tosUrl, privacyPolicyUrl, etc for terms of service and privacy policy
+};
+
+// var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// ui.start('#firebaseui-auth-container', uiConfig);
+
+    </script>
     <script type="module" src="./src/avocano-shell.js"></script>
     <script type="module" src="./src/pages/loading.js"></script>
   </body>

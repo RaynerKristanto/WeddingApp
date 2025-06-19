@@ -26,6 +26,10 @@ const routes = [
     pattern: 'products/:id',
   },
   {
+    name: 'sign-in',
+    pattern: 'sign-in',
+  },
+  {
     name: 'shipping',
     pattern: 'shipping',
   },

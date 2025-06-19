@@ -26,6 +26,10 @@ const styles = css`
     flex-direction: column;
     margin: 20px;
   }
+
+  tr {
+    text-indent: 50px
+  }
 `;
 
 export default styles;

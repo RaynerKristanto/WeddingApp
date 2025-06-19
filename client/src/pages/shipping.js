@@ -19,11 +19,11 @@ export class Shipping extends LitElement {
   static get styles() {
     return styles;
   }
-
+// changed shipping to missions
   render() {
     return html`
       <div class="shippingContainer">
-        <h1>Shipping</h1>
+        <h1>Missions</h1> 
         <div class="shippingWrapper">
           This website ships no products, but this website was shipped through
           Google Cloud automation.

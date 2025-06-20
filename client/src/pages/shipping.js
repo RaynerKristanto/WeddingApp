@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import styles from './styles/shipping.js'; // your existing styles
+import styles from './styles/shipping.js'; 
 
 // missions as constants
 const missions = [
@@ -65,22 +65,22 @@ export class Shipping extends LitElement {
         <div class="shippingWrapper">
           <table id="table">
             <tr>
-              <th></th>
               <th>Points</th>
               <th style="text-align: left; text-indent: 50px">Mission</th>
+              <th></th>
             </tr>
             ${this.missions.map((m, i) => html`
               <tr>
+                <td>${m.points}</td>
+                <td class=${m.status == 'complete' ? 'complete' : ''}>
+                  ${unsafeHTML(m.title)}
+                </td>
                 <td>
                   <input
                     type="checkbox"
                     .checked=${m.status == 'complete'}
                     @change=${() => this.toggleMission(i)}
                   />
-                </td>
-                <td>${m.points}</td>
-                <td class=${m.status == 'complete' ? 'complete' : ''}>
-                  ${unsafeHTML(m.title)}
                 </td>
               </tr>
             `)}

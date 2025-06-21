@@ -66,12 +66,12 @@ export class Shipping extends LitElement {
           <table id="table">
             <tr>
               <th>Points</th>
-              <th style="text-align: left; text-indent: 50px">Mission</th>
+              <th style="text-align: left;">Mission</th>
               <th></th>
             </tr>
             ${this.missions.map((m, i) => html`
               <tr>
-                <td>${m.points}</td>
+                <td style="text-align: center; width: 100px;">${m.points}</td>
                 <td class=${m.status == 'complete' ? 'complete' : ''}>
                   ${unsafeHTML(m.title)}
                 </td>

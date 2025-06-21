@@ -27,9 +27,6 @@ const styles = css`
     margin: 20px;
   }
 
-  tr {
-    text-indent: 50px
-  }
 `;
 
 export default styles;

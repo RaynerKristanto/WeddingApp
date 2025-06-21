@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
-import styles from './styles/shipping.js'; 
+import styles from './styles/shipping.js';
+import '../components/mission-item.js';
 
 // missions as constants
 const missions = [
@@ -9,29 +10,20 @@ const missions = [
   { points: 100, title: "Join the dance class", status: "incomplete" },
   { points: 100, title: "Win rock paper scissors competition", status: "incomplete" },
   { points: 50, title: "Introduce yourself to someone you don't know (up to 3 people for 150 points total)", status: "incomplete" },
-  { points: 50, title: "Get a score of at least 60 on <a href='https://arithmetic.zetamac.com/'>https://arithmetic.zetamac.com/</a> with default settings", status: "incomplete" },
+  { points: 50, title: "Get a score of at least 60 on <a href='https://arithmetic.zetamac.com/'>this arithmetic game</a> with default settings", status: "incomplete" },
   { points: 100, title: "Upload or promise to upload media of event to google drive", status: "incomplete" },
   { points: 25, title: "Try every food that you want (with menu link)", status: "incomplete" },
   { points: 100, title: "Win \"last one standing\" game", status: "incomplete" },
 ];
-
 export class Shipping extends LitElement {
   static properties = {
     missions: { type: Array },
     totalPoints: { type: Number }
   };
 
-  // checklist styling
   static styles = [
     styles,
     css`
-      .complete {
-        text-decoration: line-through;
-        color: gray;
-      }
-      td input[type="checkbox"] {
-        transform: scale(1.2);
-      }
       .total-points {
         margin-top: 20px;
         font-weight: bold;
@@ -41,20 +33,20 @@ export class Shipping extends LitElement {
 
   constructor() {
     super();
-    this.missions = [...missions];
+    this.missions = missions.map(m => ({ ...m }));
     this.totalPoints = this.calculatePoints();
   }
 
   toggleMission(index) {
     const updated = [...this.missions];
-    updated[index].status = updated[index].status == 'complete' ? 'incomplete' : 'complete';
+    updated[index].status = updated[index].status === 'complete' ? 'incomplete' : 'complete';
     this.missions = updated;
     this.totalPoints = this.calculatePoints();
   }
 
   calculatePoints() {
     return this.missions
-      .filter(m => m.status == 'complete')
+      .filter(m => m.status === 'complete')
       .reduce((sum, m) => sum + m.points, 0);
   }
 
@@ -63,27 +55,18 @@ export class Shipping extends LitElement {
       <div class="shippingContainer">
         <h1>Missions</h1>
         <div class="shippingWrapper">
-          <table id="table">
+          <table>
             <tr>
-              <th>Points</th>
+              <th style="text-align: left; width: 80px">Points</th>
               <th style="text-align: left;">Mission</th>
-              <th></th>
             </tr>
-            ${this.missions.map((m, i) => html`
-              <tr>
-                <td style="text-align: center; width: 100px;">${m.points}</td>
-                <td class=${m.status == 'complete' ? 'complete' : ''}>
-                  ${unsafeHTML(m.title)}
-                </td>
-                <td>
-                  <input
-                    type="checkbox"
-                    .checked=${m.status == 'complete'}
-                    @change=${() => this.toggleMission(i)}
-                  />
-                </td>
-              </tr>
-            `)}
+          </table>
+          <table>
+            <tr>
+              ${this.missions.map((m, i) => html`
+                <mission-item .mission=${m} .index=${i} @toggle-mission=${this.handleToggleMission}></mission-item>
+              `)}
+            </tr>
           </table>
           <div class="total-points">Total Points Earned: ${this.totalPoints}</div>
         </div>
@@ -91,7 +74,5 @@ export class Shipping extends LitElement {
     `;
   }
 }
-
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 customElements.define('app-shipping', Shipping);

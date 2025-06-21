@@ -26,7 +26,9 @@ const styles = css`
     flex-direction: column;
     margin: 20px;
   }
-
+  th {
+    font-weight: bold;
+  }
 `;
 
 export default styles;

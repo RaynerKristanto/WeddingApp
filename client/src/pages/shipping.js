@@ -67,8 +67,10 @@ export class Shipping extends LitElement {
               `)}
             </tbody>
           </table>
-          <div style="padding-left: 20px;" class="total-points">Total Points Earned: ${this.totalPoints}</div>
         </div>
+      </div>
+      <div class="points">
+        <div class="total-points">Total Points: ${this.totalPoints}</div>
       </div>
     `;
   }

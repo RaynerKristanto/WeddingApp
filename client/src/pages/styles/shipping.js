@@ -35,6 +35,22 @@ const styles = css`
     font-weight: bold;
     font-size: 20px
   }
+  .points {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f0f0f0; /* Or any color you prefer */
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+    align-items: center;
+    display: flex;
+  }
+  .total-points {
+    padding-bottom: 20px;
+    padding-left: 20px;
+  }
 `;
 
 export default styles;

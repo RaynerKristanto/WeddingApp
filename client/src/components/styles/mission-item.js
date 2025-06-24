@@ -1,4 +1,4 @@
-// Copyright 2022 Google LLC
+// Copyright 2023 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,25 +15,11 @@
 import { css } from 'lit';
 
 const styles = css`
-  h1 {
-    color: var(--color-secondary);
-    padding-left: 20px;
-    text-align: left;
-  }
-
-  .shippingContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 20px;
-  }
-  table {
-    padding-left: 20px;
-  }
-
-  th {
-    font-weight: bold;
-    font-size: 20px
+  tr {
+    outline: thin solid lightgray;
+    border-radius: 5px;
+    height: 75px;
+    vertical-align: middle;
   }
 `;
 

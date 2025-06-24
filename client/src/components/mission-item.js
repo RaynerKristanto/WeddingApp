@@ -28,11 +28,8 @@ export class MissionItem extends LitElement {
 
   render() {
     return html`
-        <td style="width: 100px;">${this.mission.points}</td>
-        <td style="text-align: left; width: 225px;" class=${this.mission.status === 'complete' ? 'complete' : ''}>
-            ${unsafeHTML(this.mission.title)}
-        </td>
-        <td style="vertical-align: middle;">
+      <tr>
+        <td style="vertical-align: middle; padding-left: 10px;">
             <input 
             type="checkbox"
             .checked=${this.mission.status === 'complete'}
@@ -44,6 +41,11 @@ export class MissionItem extends LitElement {
                 }))}
             />
         </td>
+        <td style="text-align: left; width: 250px; padding-left: 10px" class=${this.mission.status === 'complete' ? 'complete' : ''}>
+            ${unsafeHTML(this.mission.title)}
+        </td>
+        <td style="width: 50px;">${this.mission.points}</td>
+      </tr>
     `;
   }
 }  

@@ -56,14 +56,8 @@ export class Shipping extends LitElement {
       <div class="shippingContainer">
         <h1>Missions</h1>
         <div class="shippingWrapper">
-          <table>
-            <tr>
-              <th style="text-align: left; width: 100px">Points</th>
-              <th style="text-align: left;">Mission</th>
-            </tr>
-          </table>
           <table style="width: 400px;">
-            <tr>
+            <tbody>
               ${this.missions.map((m, i) => html`
                 <mission-item 
                   .mission=${m} 
@@ -71,7 +65,7 @@ export class Shipping extends LitElement {
                   @toggle-mission=${(e) => this.toggleMission(e.detail.index)}>
                 </mission-item>
               `)}
-            </tr>
+            </tbody>
           </table>
           <div style="padding-left: 20px;" class="total-points">Total Points Earned: ${this.totalPoints}</div>
         </div>

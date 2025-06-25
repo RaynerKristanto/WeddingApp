@@ -47,38 +47,44 @@ const styles = css`
     text-decoration: underline;
   }
 
-  .navigationBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .navigationPanel {
-    display: flex;
-  }
-
-  .shoppingCartIcon {
-    width: auto;
-    height: 30px;
-  }
-
-  .shoppingCartTotal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    background: floralwhite;
+  .topnav {
     position: relative;
-    bottom: 23px;
-    left: 18px;
-    border: 2px solid black;
-    border-radius: 20px;
-    text-align: center;
-    height: 22px;
-    width: 22px;
+    display: flex;
+    align-items: center;
+    background: var(--color-primary, #336699);
+    height: 60px;
+    padding: 0 1em;
   }
-`;
+
+
+  .icon {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    margin-right: auto;
+    z-index: 10;   
+  }
+
+   #myLinks {
+    position: absolute;
+    top: 100%;      
+    left: 0;       
+    width: 200px;   
+    background: white;
+    padding: 1em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 5;
+  }
+
+    #myLinks.show {
+      display: block;
+    }
+
+    app-link {
+      display: block;
+      margin: 0.5em 0;
+    }
+  `;
 
 export default styles;

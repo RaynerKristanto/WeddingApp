@@ -36,6 +36,13 @@ export class Header extends LitElement {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+
+  closeMenuOnClick(e) {
+    // Optionally check if the click was on a menu link to be safe
+    // For example, if app-link dispatches a click event, this will catch it
+    this.menuOpen = false;
+  }
+
   render() {
     document.title = this.headerTitle;
 // changed shipping to Missions
@@ -45,7 +52,9 @@ export class Header extends LitElement {
       </div>
       <div class="navigationBar">
         <div class="topnav">
-          <div id="myLinks" style="display: ${this.menuOpen ? 'block' : 'none'};">
+          <div id="myLinks" 
+          style="display: ${this.menuOpen ? 'block' : 'none'};" 
+          @click=${this.closeMenuOnClick}>
             <app-link href="/products">Products</app-link>
             <app-link href="/shipping">Missions</app-link>
             <app-link href="/contact">Contact</app-link>

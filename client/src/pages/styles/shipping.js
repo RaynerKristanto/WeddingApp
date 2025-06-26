@@ -44,7 +44,7 @@ const styles = css`
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--color-primary); /* Or any color you prefer */
+    background-color: var(--color-primary);
     width: 100%;
     height: 60px;
     z-index: 1000;

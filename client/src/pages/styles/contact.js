@@ -30,37 +30,16 @@ const styles = css`
   .contactWrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
   }
 
-  .user-item:nth-child(even) {
+  leaderboard-item:nth-child(even) {
     background-color: #f2f2f2; 
   }
 
-  .user-item:nth-child(odd) {
+  leaderboard-item:nth-child(odd) {
     background-color: #ffffff; 
   }
-
-  .user-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
-  }
-  .user-name {
-    margin-left: 10px;
-    margin-right: auto; /* Push points to the right */
-  }
-
-  .user-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-left: 10px;
-    object-fit: cover;
-   }
 `;
 
 export default styles;

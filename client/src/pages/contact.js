@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { LitElement, html } from 'lit';
+import "../components/leaderboard-item.js"
 import styles from './styles/contact.js';
 
 const noimage = new URL('../../assets/noimage.png', import.meta.url).href;
@@ -41,18 +42,13 @@ export class Contact extends LitElement {
       <div class="contactContainer">
         <h1>Leaderboard</h1>
         <div class="contactWrapper">
-          ${this.users.map(
-            (user, index) => html`
-              <div class="user-item">
-                <span class="rank">${index + 1}.</span>
-                <img src="${noimage}" alt="${user.name}" class="user-image">
-                <span class="user-name">${user.name}</span>
-                <span class="user-points">${user.points}</span>
-              </div>
-                  </div>
-                </div>
-              `,
-            )}
+          ${this.users.map((user, index) => html`
+            <leaderboard-item
+              .rank=${index + 1}
+              .imageSrc=${noimage}
+              .name=${user.name}
+              .points=${user.points}>
+            </leaderboard-item>`)}
         </div>
       </div>
     `;

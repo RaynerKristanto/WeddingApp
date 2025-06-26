@@ -51,7 +51,7 @@ const styles = css`
     position: relative;
     display: flex;
     align-items: center;
-    background: var(--color-primary, #336699);
+    background: var(--color-primary);
     height: 60px;
     padding: 0 1em;
   }
@@ -69,7 +69,7 @@ const styles = css`
     position: absolute;
     top: 100%;      
     left: 0;       
-    width: 200px;   
+    width: 100%;   
     background: white;
     padding: 1em;
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);

@@ -56,7 +56,7 @@ export class Shipping extends LitElement {
       <div class="shippingContainer">
         <h1>Missions</h1>
         <div class="shippingWrapper">
-          <table style="width: 400px;">
+          <table>
             <tbody>
               ${this.missions.map((m, i) => html`
                 <mission-item 

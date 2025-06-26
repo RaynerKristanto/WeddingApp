@@ -17,9 +17,10 @@ import { css } from 'lit';
 const styles = css`
   tr {
     outline: thin solid lightgray;
-    border-radius: 5px;
+    border-radius: 10px;
     height: 75px;
     vertical-align: middle;
+    padding-bottom: 20px;
   }
 `;
 

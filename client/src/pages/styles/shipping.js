@@ -17,18 +17,22 @@ import { css } from 'lit';
 const styles = css`
   h1 {
     color: var(--color-secondary);
-    padding-left: 20px;
-    text-align: left;
+    text-align: center;
   }
 
   .shippingContainer {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     margin: 20px;
   }
+  .shippingWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
   table {
-    padding-left: 20px;
+    border-spacing: 5px;
+    width: 100%;
   }
 
   th {
@@ -40,7 +44,7 @@ const styles = css`
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #f0f0f0; /* Or any color you prefer */
+    background-color: var(--color-primary); /* Or any color you prefer */
     width: 100%;
     height: 60px;
     z-index: 1000;
@@ -50,6 +54,7 @@ const styles = css`
   .total-points {
     padding-bottom: 20px;
     padding-left: 20px;
+    color: white;
   }
 `;
 

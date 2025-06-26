@@ -57,7 +57,7 @@ export class Header extends LitElement {
           @click=${this.closeMenuOnClick}>
             <app-link href="/products">Products</app-link>
             <app-link href="/shipping">Missions</app-link>
-            <app-link href="/contact">Contact</app-link>
+            <app-link href="/contact">Leaderboard</app-link>
             <app-link href="/sign-in">Sign In</app-link>
           </div>
           <a class="icon" @click=${this.toggleMenu}>

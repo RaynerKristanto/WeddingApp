@@ -15,21 +15,44 @@
 import { LitElement, html } from 'lit';
 import styles from './styles/contact.js';
 
+const noimage = new URL('../../assets/noimage.png', import.meta.url).href;
+const users = [
+  { points: 250, name: "Clarissa Kristanto", status: "incomplete" },
+  { points: 350, name: "Rayner Kristanto", status: "incomplete" },
+  { points: 400, name: "Sherry Yao", status: "incomplete" },
+  { points: 50, name: "Labubu", status: "incomplete" },
+  { points: 25, name: "Cry Baby", status: "incomplete" },
+];
+
 export class Contact extends LitElement {
   static get styles() {
     return styles;
   }
 
+  constructor() {
+    super();
+    this.title = 'Leaderboard';
+    this.users = users.map(u => ({ ...u }));
+    this.users.sort((a, b) => b.points - a.points);
+  }
+
   render() {
     return html`
       <div class="contactContainer">
-        <h1>Contact</h1>
+        <h1>Leaderboard</h1>
         <div class="contactWrapper">
-          This website was deployed from sample code in the
-          <a href="https://github.com/GoogleCloudPlatform/avocano"
-            >GoogleCloudPlatform/avocano</a
-          >
-          repo on GitHub.
+          ${this.users.map(
+            (user, index) => html`
+              <div class="user-item">
+                <span class="rank">${index + 1}.</span>
+                <img src="${noimage}" alt="${user.name}" class="user-image">
+                <span class="user-name">${user.name}</span>
+                <span class="user-points">${user.points}</span>
+              </div>
+                  </div>
+                </div>
+              `,
+            )}
         </div>
       </div>
     `;

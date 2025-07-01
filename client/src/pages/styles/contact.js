@@ -19,6 +19,50 @@ const styles = css`
     color: var(--color-secondary);
   }
 
+  .userWrapper {
+    background-color: var(--color-primary);
+    border: 1px solid #d3d3d3;
+    padding: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .user-name {
+    font-size: 1.2em;
+    margin-left: 10px;
+    margin-right: auto;
+    width: 100px;
+  }
+
+  .user-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .user-rank {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--color-secondary);
+    margin: 5px 0;
+    width: 20px; 
+    text-align: right;
+  }
+
+  .user-points {
+    font-size: 1.2em;
+    margin-right: 10px;
+    margin-left: auto;
+    width: 120px; /* Ensures the space for points is always the same */
+    text-align: right; /* Aligns the points text to the right */
+  }
   .contactContainer {
     display: flex;
     align-items: center;
@@ -31,14 +75,6 @@ const styles = css`
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
-
-  leaderboard-item:nth-child(even) {
-    background-color: #f2f2f2; 
-  }
-
-  leaderboard-item:nth-child(odd) {
-    background-color: #ffffff; 
   }
 `;
 

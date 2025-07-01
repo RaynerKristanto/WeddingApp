@@ -26,6 +26,11 @@ const users = [
 ];
 
 export class Contact extends LitElement {
+  static get properties() {
+    return {
+      selectedUser: { type: Object, state: true },
+    };
+  }
   static get styles() {
     return styles;
   }
@@ -35,20 +40,44 @@ export class Contact extends LitElement {
     this.title = 'Leaderboard';
     this.users = users.map(u => ({ ...u }));
     this.users.sort((a, b) => b.points - a.points);
+    this.selectedUser = this.users[0];
   }
 
+  _selectUser(user) {
+    this.selectedUser = user;
+  }
+
+  get selectedUserRank() {
+    if (!this.selectedUser) return null;
+    return this.users.findIndex(u => u === this.selectedUser) + 1;
+  }
   render() {
     return html`
       <div class="contactContainer">
         <h1>Leaderboard</h1>
+        <div class ="userWrapper">
+        ${this.selectedUser
+          ? html`
+              <div class="user-rank">${this.selectedUserRank}.</div>
+              <div class="user-name">${this.selectedUser.name}</div>
+              <img class="user-image" src=${noimage} alt="User Image" />
+              <div class="user-points">
+                ${this.selectedUser.points} Points
+              </div>
+            `
+          : html`<p>Select a player to see their stats.</p>`}
+        </div>
         <div class="contactWrapper">
           ${this.users.map((user, index) => html`
             <leaderboard-item
               .rank=${index + 1}
               .imageSrc=${noimage}
               .name=${user.name}
-              .points=${user.points}>
-            </leaderboard-item>`)}
+              .points=${user.points}
+              @click=${() => this._selectUser(user)}
+              style="cursor: pointer;"
+            ></leaderboard-item>
+          `)}
         </div>
       </div>
     `;

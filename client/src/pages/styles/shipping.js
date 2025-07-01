@@ -23,12 +23,13 @@ const styles = css`
   .shippingContainer {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    align-items: center; 
   }
   .shippingWrapper {
     display: flex;
     flex-direction: column;
     align-items: center; 
+    width: 350px;
   }
   table {
     border-spacing: 5px;

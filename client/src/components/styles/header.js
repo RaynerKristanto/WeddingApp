@@ -52,14 +52,16 @@ const styles = css`
     display: flex;
     align-items: center;
     background: var(--color-primary);
-    height: 60px;
+    background-image: linear-gradient(to right, white, var(--color-primary));
+    height: 50px;
     padding: 0 1em;
   }
 
 
   .icon {
+    height: 45px;
     font-size: 30px;
-    color: white;
+    color: var(--site-name-color);
     cursor: pointer;
     margin-right: auto;
     z-index: 10;   

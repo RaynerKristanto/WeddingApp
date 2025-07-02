@@ -29,6 +29,9 @@ const styles = css`
     align-items: center;
     justify-content: flex-start;
     border-radius: 10px;
+    position: sticky;
+    top: 10px;
+    z-index: 1;
   }
 
   .user-name {

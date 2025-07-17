@@ -23,6 +23,11 @@ const users = [
   { points: 400, name: "Sherry Yao", status: "incomplete" },
   { points: 50, name: "Labubu", status: "incomplete" },
   { points: 25, name: "Cry Baby", status: "incomplete" },
+  { points: 150, name: "Lafufu", status: "incomplete" },
+  { points: 50, name: "Luffy", status: "incomplete" },
+  { points: 200, name: "Miffy", status: "incomplete" },
+  { points: 125, name: "Labubu", status: "incomplete" },
+  { points: 225, name: "Cry Baby", status: "incomplete" },
 ];
 
 export class Contact extends LitElement {

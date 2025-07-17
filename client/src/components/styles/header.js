@@ -31,8 +31,11 @@ const styles = css`
   }
 
   h1 {
-    font-family: var(--site-name-font), cursive;
+    font-family: var(--site-name-font);
     font-size: 45px;
+    font-style: italic;
+    margin-bottom: 0;
+    font-weight: normal;
   }
 
   h1 > a {
@@ -46,9 +49,19 @@ const styles = css`
   .header > h1 > a:active {
     text-decoration: underline;
   }
+  
+  h2 {
+    font-family: var(--base-font);
+    font-size: 25px;
+    color: var(--site-name-color);
+    margin-top: 0px;
+}
+
+  .navigationBar {
+    position: relative;
+  }
 
   .topnav {
-    position: relative;
     display: flex;
     align-items: center;
     background: var(--color-primary);
@@ -57,13 +70,11 @@ const styles = css`
     padding: 0 1em;
   }
 
-
   .icon {
     height: 45px;
     font-size: 30px;
     color: var(--site-name-color);
     cursor: pointer;
-    margin-right: auto;
     z-index: 10;   
   }
 
@@ -77,6 +88,7 @@ const styles = css`
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     display: none;
     z-index: 5;
+    box-sizing: border-box;
   }
 
     #myLinks.show {
@@ -86,6 +98,7 @@ const styles = css`
     app-link {
       display: block;
       margin: 0.5em 0;
+      font-size: 20px;
     }
   `;
 

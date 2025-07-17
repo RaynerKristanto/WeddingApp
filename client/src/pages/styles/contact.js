@@ -17,6 +17,7 @@ import { css } from 'lit';
 const styles = css`
   h1 {
     color: var(--color-secondary);
+    font-size: 2em;
   }
 
   .userWrapper {
@@ -75,8 +76,6 @@ const styles = css`
   }
 
   .contactWrapper {
-    display: flex;
-    flex-direction: column;
     width: 100%;
   }
 `;

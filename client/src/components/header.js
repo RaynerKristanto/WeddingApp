@@ -49,20 +49,21 @@ export class Header extends LitElement {
     return html`
       <div class="header">
         <h1><a href="/">${this.headerTitle || 'Simulatum'}</a></h1>
+        <h2>W E D D I N G</h2>
       </div>
       <div class="navigationBar">
         <div class="topnav">
-          <div id="myLinks" 
+          <a class="icon" @click=${this.toggleMenu}>
+            <span style="font-size: 30px;">☰</span>
+          </a>
+        </div>
+        <div id="myLinks" 
           style="display: ${this.menuOpen ? 'block' : 'none'};" 
           @click=${this.closeMenuOnClick}>
             <app-link href="/products">Products</app-link>
             <app-link href="/shipping">Missions</app-link>
             <app-link href="/contact">Leaderboard</app-link>
             <app-link href="/sign-in">Sign In</app-link>
-          </div>
-          <a class="icon" @click=${this.toggleMenu}>
-            <span style="font-size: 30px;">☰</span>
-          </a>
         </div>
       </div>
     `;

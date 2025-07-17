@@ -17,7 +17,8 @@ import { css } from 'lit';
 const styles = css`
   h1 {
     color: var(--color-secondary);
-    text-align: center;
+    font-size: 2em;
+    padding-top: 20px;
   }
 
   .shippingContainer {
@@ -27,9 +28,7 @@ const styles = css`
   }
   .shippingWrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center; 
-    width: 350px;
+    width: 366px;
   }
   table {
     border-spacing: 5px;

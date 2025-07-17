@@ -24,19 +24,17 @@ const styles = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 0 2em;
     background-color: var(--color-primary);
     background-image: linear-gradient(to right, white, var(--color-primary));
+    margin-bottom: 0;
   }
 
-  h1 {
-    font-family: var(--site-name-font);
-    font-size: 45px;
-    font-style: italic;
-    margin-bottom: 0;
-    font-weight: normal;
-  }
+  .sr {
+    height: 250px;
+    width: auto;
+   }
 
   h1 > a {
     color: var(--site-name-color) !important;
@@ -55,10 +53,11 @@ const styles = css`
     font-size: 25px;
     color: var(--site-name-color);
     margin-top: 0px;
-}
+  }
 
   .navigationBar {
     position: relative;
+    margin-top: -5px;
   }
 
   .topnav {

@@ -21,6 +21,7 @@ const styles = css`
     height: 75px;
     vertical-align: middle;
     padding-bottom: 20px;
+    font-size: 1.1em;
   }
 `;
 

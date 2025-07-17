@@ -51,7 +51,7 @@ export class ProductList extends navigator(LitElement) {
   render() {
     return html`
       <div class="productContainer">
-        <h1 class="productTitle">Product List</h1>
+        <h1 class="productTitle">Menu</h1>
         <div class="productWrapper">
           ${this.state.status === 'loading'
             ? html`<p>loading...</p>`

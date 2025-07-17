@@ -19,6 +19,9 @@ import styles from './styles/home.js';
 import '../components/product-item.js';
 import { getAuth } from "firebase/auth"; 
 import { initializeApp } from "firebase/app";
+
+const sherray = new URL('../sherray.webp', import.meta.url).href;
+
 const firebaseConfig = {
   apiKey: "AIzaSyAntDVs4c7i_TPAqFXVhztEJRXd7Xj63u0",
   authDomain: "fair-backbone-447521-d8.firebaseapp.com",
@@ -125,12 +128,12 @@ export class Home extends LitElement {
     return html`
       <div class="homeBase">
         <div id="firebaseui-auth-container"></div>
-        ${status === 'loading'
-          ? html`<p class="loading">loading... 🥑</p>`
-          : html`<app-product-item
-              .productId="{this.productId}"
-              .productItem=${productItem}
-            ></app-product-item>`}
+        <div class="titleContainer">
+          <h1>RAYNER & SHERRY'S</h1>
+          <h2>W E D D I N G</h2>
+          <img class="sherray" src=${sherray} alt="Sherray"/>
+          <h2>-09 01 2025-</h2>
+        </div>
       </div>
     `;
   }

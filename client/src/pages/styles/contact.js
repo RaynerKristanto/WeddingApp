@@ -17,8 +17,9 @@ import { css } from 'lit';
 const styles = css`
   h1 {
     color: var(--color-secondary);
-    font-size: 2em;
+    font-size: 2.5em;
   }
+    
 
   .userWrapper {
     background-color: var(--color-primary);
@@ -36,10 +37,10 @@ const styles = css`
   }
 
   .user-name {
-    font-size: 1.2em;
+    font-size: 1.6em;
     margin-left: 10px;
     margin-right: auto;
-    width: 100px;
+    width: 120px;
     color: white;
   }
 
@@ -51,16 +52,16 @@ const styles = css`
   }
 
   .user-rank {
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
-    color: var(--color-secondary);
+    color: var(--site-name-color);
     margin: 5px 0;
     width: 20px; 
     text-align: right;
   }
 
   .user-points {
-    font-size: 1.2em;
+    font-size: 1.6em;
     margin-right: 10px;
     margin-left: auto;
     width: 120px; 

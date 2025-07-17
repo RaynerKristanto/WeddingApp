@@ -16,6 +16,8 @@ import { LitElement, html } from 'lit';
 import styles from './styles/header.js';
 import './link.js';
 
+const sr = new URL('../sr.png', import.meta.url).href;
+
 export class Header extends LitElement {
   static get properties() {
     return {
@@ -48,8 +50,7 @@ export class Header extends LitElement {
 // changed shipping to Missions
     return html`
       <div class="header">
-        <h1><a href="/">${this.headerTitle || 'Simulatum'}</a></h1>
-        <h2>W E D D I N G</h2>
+        <img class="sr" src=${sr} alt="Sr"/>
       </div>
       <div class="navigationBar">
         <div class="topnav">
@@ -60,7 +61,7 @@ export class Header extends LitElement {
         <div id="myLinks" 
           style="display: ${this.menuOpen ? 'block' : 'none'};" 
           @click=${this.closeMenuOnClick}>
-            <app-link href="/products">Products</app-link>
+            <app-link href="/products">Menu</app-link>
             <app-link href="/shipping">Missions</app-link>
             <app-link href="/contact">Leaderboard</app-link>
             <app-link href="/sign-in">Sign In</app-link>

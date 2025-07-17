@@ -17,7 +17,7 @@ import { css } from 'lit';
 const styles = css`
   h1 {
     color: var(--color-secondary);
-    font-size: 2em;
+    font-size: 2.5em;
     padding-top: 20px;
   }
 
@@ -39,6 +39,7 @@ const styles = css`
     font-weight: bold;
     font-size: 20px
   }
+
   .points {
     position: fixed;
     bottom: 0px;
@@ -51,10 +52,12 @@ const styles = css`
     align-items: center;
     display: flex;
   }
+
   .total-points {
     padding-bottom: 20px;
     padding-left: 20px;
     color: white;
+    font-size: 1.5em;
   }
 `;
 

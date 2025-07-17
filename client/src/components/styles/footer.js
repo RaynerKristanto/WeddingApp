@@ -24,6 +24,11 @@ const styles = css`
     padding: 30px 0;
   }
 
+  .sr {
+    height: 100px;
+    width: auto;
+  }
+
   .version,
   .footerWrapper {
     padding: 5px 3px;

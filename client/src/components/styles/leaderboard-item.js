@@ -7,10 +7,12 @@ const styles = css`
     align-items: center;
     width: 100%;
     padding: 10px;
+    color: var(--site-name-color)
   }
   .user-name {
     margin-left: 10px;
     margin-right: auto; 
+    font-size: 1.5em;
   }
   .user-image {
     width: 40px;
@@ -19,8 +21,15 @@ const styles = css`
     margin-left: 10px; 
     object-fit: cover;
   }
+
+  .rank{
+   font-size: 1.5em;
+   color: var(--site-name-color)
+  }
+
   .user-points {
     margin-right: 20px;
+    font-size: 1.5em;
   }
 `;
 

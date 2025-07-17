@@ -19,10 +19,40 @@ const styles = css`
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 10px;
   }
 
   .loading {
     padding: 20px;
+  }
+
+  .titleContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #e4dbe9;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+   h1 {
+    font-family: var(--site-name-font);
+    font-size: 40px;
+    font-style: italic;
+    margin-bottom: 0;
+    font-weight: normal;
+    color: var(--site-name-color);
+  }
+  h2 {
+    font-family: var(--base-font);
+    font-size: 25px;
+    color: var(--site-name-color);
+    margin-top: 0px;
+  }
+  .sherray {
+    width: 90%;
+    border-radius: 50%;
+    margin-bottom: 20px;
   }
 `;
 

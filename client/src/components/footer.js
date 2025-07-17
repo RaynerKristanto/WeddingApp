@@ -17,6 +17,8 @@ import styles from './styles/footer.js';
 import { getConfig } from '../utils/config.js';
 import './link.js';
 
+const sr = new URL('../srblack.png', import.meta.url).href;
+
 export class Footer extends LitElement {
   static get styles() {
     return styles;
@@ -28,12 +30,13 @@ export class Footer extends LitElement {
     return html`
       <div class="footer">
         <div class="footerWrapper">
-          Made with 💚 from the
-          <a href="https://github.com/GoogleCloudPlatform/avocano/">Pit Crew</a>
+          Made with 💜 from the
+          <a href="https://github.com/RaynerKristanto/WeddingApp.git">Kristanto's</a>
         </div>
         <div class="version">
-          Avocano v${VERSION} (purchase mode: ${AVOCANO_PURCHASE_MODE})
+          Rayner & Sherry's v${VERSION}
         </div>
+        <img class="sr" src=${sr} alt="Sr"/>
       </div>
     `;
   }

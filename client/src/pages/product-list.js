@@ -75,12 +75,6 @@ export class ProductList extends navigator(LitElement) {
                     </div>
                     <div class="productItemContent">
                       <div class="itemTitle">${item.name}</div>
-                      <div>${`Price: $${item.discount_price}`}</div>
-                      <div>
-                        ${item.inventory_count
-                          ? `Available: ${item.inventory_count}`
-                          : `Sold Out!`}
-                      </div>
                     </div>
                   </div>
                 `,

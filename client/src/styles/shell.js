@@ -16,8 +16,7 @@ import { css } from 'lit';
 
 const styles = css`
   :host {
-    font-family: sans-serif;
-    font-family: var(--base-font);
+    font-family: var(--base-font) !important;
     font-size: 16px;
     display: flex;
     flex-direction: column;

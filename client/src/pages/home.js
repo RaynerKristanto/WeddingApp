@@ -132,7 +132,7 @@ export class Home extends LitElement {
         <div id="firebaseui-auth-container"></div>
         <div class="titleContainer">
           <img class="bg" src=${bg} alt="Bg"/>
-          <h1>RAYNER & SHERRY'S</h1>
+          <h1>SHERRY & RAYNER'S</h1>
           <h2>W E D D I N G</h2>
           <img class="sherray" src=${sherray} alt="Sherray"/>
           <h2>-09 01 2025-</h2>

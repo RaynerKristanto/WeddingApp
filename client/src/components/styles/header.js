@@ -61,6 +61,7 @@ const styles = css`
     line-height: inherit;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
   }
 
   [role=button],button {
@@ -210,22 +211,31 @@ const styles = css`
     left: 0;       
     width: 100%;   
     background: white;
-    padding: 1em;
+    margin: 0
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     display: none;
     z-index: 5;
+    display: block;
     box-sizing: border-box;
+    transition: max-height 0.5s ease-out;
+    max-height: 0;
+    overflow: hidden;
   }
 
-    #myLinks.show {
-      display: block;
-    }
+  #myLinks.show {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+  }
 
-    app-link {
-      display: block;
-      margin: 0.5em 0;
-      font-size: 20px;
-    }
+  app-link {
+    display: block;
+    margin: 0.5em 0;
+    font-size: 20px;
+  }
+
+  .linksContainer {
+    padding: 1em;
+  }
   `;
 
 export default styles;

@@ -67,6 +67,7 @@ const styles = css`
     width: 80%;
     border-radius: 50%;
     margin-bottom: 20px;
+    transform: scaleX(-1);
   }
 `;
 

@@ -25,6 +25,7 @@ const styles = css`
 
   .loadingTitle {
     padding: 10px;
+    font-family: var(--base-font) !important;
   }
 
   .spinner {
@@ -41,10 +42,10 @@ const styles = css`
     width: 64px;
     height: 64px;
     margin: 8px;
-    border: 8px solid rgb(178, 180, 63);
+    border: 8px solid rgb(196, 178, 209);
     border-radius: 50%;
     animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: rgb(178, 180, 63) transparent transparent transparent;
+    border-color: rgb(196, 178, 209) transparent transparent transparent;
   }
 
   .spinner div:nth-child(1) {

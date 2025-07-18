@@ -47,6 +47,8 @@ export class Header extends LitElement {
     // Optionally check if the click was on a menu link to be safe
     // For example, if app-link dispatches a click event, this will catch it
     this.menuOpen = false;
+    const hamburgerIcon = this.shadowRoot.querySelector('.css-prysaa');
+    hamburgerIcon.classList.remove('open');
   }
 
   render() {
@@ -71,13 +73,15 @@ export class Header extends LitElement {
             <span class="css-1wkn33">Menu Button</span>
           </button>
         </div>
-        <div id="myLinks" 
-          style="display: ${this.menuOpen ? 'block' : 'none'};" 
-          @click=${this.closeMenuOnClick}>
+        <div id="myLinks"  
+          @click=${this.closeMenuOnClick}
+          class="${this.menuOpen ? 'show' : ''}">
+          <div class="linksContainer">
             <app-link href="/products">Menu</app-link>
             <app-link href="/shipping">Missions</app-link>
             <app-link href="/contact">Leaderboard</app-link>
             <app-link href="/sign-in">Sign In</app-link>
+          </div>
         </div>
       </div>
     `;

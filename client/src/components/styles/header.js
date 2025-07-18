@@ -26,26 +26,12 @@ const styles = css`
     justify-content: center;
     align-items: center;
     padding: 0 2em;
-    background-color: var(--color-primary);
-    background-image: linear-gradient(to right, white, var(--color-primary));
-    margin-bottom: 0;
+    margin-bottom: -40px;
   }
 
-  .sr {
-    height: 250px;
-    width: auto;
-   }
-
-  h1 > a {
-    color: var(--site-name-color) !important;
-  }
-
-  .header > h1 > a {
-    text-decoration: none;
-  }
-
-  .header > h1 > a:active {
-    text-decoration: underline;
+  .flower {
+    width: 122%;
+    margin-bottom: -120px;
   }
   
   h2 {
@@ -57,16 +43,16 @@ const styles = css`
 
   .navigationBar {
     position: relative;
-    margin-top: -5px;
   }
 
   .topnav {
     display: flex;
     align-items: center;
-    background: var(--color-primary);
-    background-image: linear-gradient(to right, white, var(--color-primary));
+    justify-content: flex-start;
     height: 50px;
     padding: 0 1em;
+    position: relative;
+    margin-bottom: 0px;
   }
 
   .icon {
@@ -75,6 +61,11 @@ const styles = css`
     color: var(--site-name-color);
     cursor: pointer;
     z-index: 10;   
+  }
+
+  .sr {
+    height: 75px;
+    width: auto;
   }
 
    #myLinks {

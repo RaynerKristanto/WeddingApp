@@ -21,6 +21,7 @@ import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 
 const sherray = new URL('../sherray.webp', import.meta.url).href;
+const bg = new URL('../watercolor.png', import.meta.url).href;;
 
 const firebaseConfig = {
   apiKey: "AIzaSyAntDVs4c7i_TPAqFXVhztEJRXd7Xj63u0",
@@ -129,6 +130,7 @@ export class Home extends LitElement {
       <div class="homeBase">
         <div id="firebaseui-auth-container"></div>
         <div class="titleContainer">
+          <img class="bg" src=${bg} alt="Bg"/>
           <h1>RAYNER & SHERRY'S</h1>
           <h2>W E D D I N G</h2>
           <img class="sherray" src=${sherray} alt="Sherray"/>

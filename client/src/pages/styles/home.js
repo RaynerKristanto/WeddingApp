@@ -20,6 +20,7 @@ const styles = css`
     justify-content: center;
     text-align: center;
     padding: 10px;
+    position: relative;
   }
 
   .loading {
@@ -29,15 +30,27 @@ const styles = css`
   .titleContainer{
     display: flex;
     flex-direction: column;
-    background-color: #e4dbe9;
-    border-radius: 10px;
     align-items: center;
     justify-content: center;
+    z-index: 1;
+    background-color: transparent;
+  }
+  
+  .bg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    z-index: -1; 
+    object-fit: cover;
   }
   
    h1 {
     font-family: var(--site-name-font);
-    font-size: 40px;
+    font-size: 35px;
     font-style: italic;
     margin-bottom: 0;
     font-weight: normal;
@@ -50,7 +63,7 @@ const styles = css`
     margin-top: 0px;
   }
   .sherray {
-    width: 90%;
+    width: 80%;
     border-radius: 50%;
     margin-bottom: 20px;
   }

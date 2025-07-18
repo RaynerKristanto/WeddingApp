@@ -24,6 +24,10 @@ const styles = css`
     padding: 30px 0;
   }
 
+  .footerWrapper > a {
+    color: var(--site-name-color) !important;
+  }
+
   .sr {
     height: 100px;
     width: auto;
@@ -32,6 +36,10 @@ const styles = css`
   .version,
   .footerWrapper {
     padding: 5px 3px;
+  }
+  .flower {
+    width: 100%;
+    margin-top: -100px;
   }
 `;
 

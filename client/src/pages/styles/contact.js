@@ -23,10 +23,10 @@ const styles = css`
 
   .userWrapper {
     background-color: var(--color-primary);
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 30px;
-    width: 95%;
-    height: 100px;
+    width: 97%;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -45,8 +45,8 @@ const styles = css`
   }
 
   .user-image {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -56,7 +56,7 @@ const styles = css`
     font-weight: bold;
     color: var(--site-name-color);
     margin: 5px 0;
-    width: 20px; 
+    width: span; 
     text-align: right;
   }
 

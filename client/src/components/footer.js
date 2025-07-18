@@ -18,6 +18,7 @@ import { getConfig } from '../utils/config.js';
 import './link.js';
 
 const sr = new URL('../srblack.png', import.meta.url).href;
+const flower = 'https://media-api.xogrp.com/images/85d619c9-01cc-4a2f-b0e1-13efd7f21f28~rt_auto-rs_960.h?ordering=explicit';
 
 export class Footer extends LitElement {
   static get styles() {
@@ -34,9 +35,10 @@ export class Footer extends LitElement {
           <a href="https://github.com/RaynerKristanto/WeddingApp.git">Kristanto's</a>
         </div>
         <div class="version">
-          Rayner & Sherry's v${VERSION}
+          S & R v${VERSION}
         </div>
         <img class="sr" src=${sr} alt="Sr"/>
+        <img class="flower" src=${flower} alt="Flower"/>
       </div>
     `;
   }

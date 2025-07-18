@@ -25,6 +25,7 @@ const styles = css`
   .rank{
    font-size: 1.5em;
    color: var(--site-name-color)
+   text-align: right;
   }
 
   .user-points {

@@ -16,7 +16,8 @@ import { LitElement, html } from 'lit';
 import styles from './styles/header.js';
 import './link.js';
 
-const sr = new URL('../sr.png', import.meta.url).href;
+const sr = new URL('../srblack.png', import.meta.url).href;
+const flower = 'https://media-api.xogrp.com/images/3f0b385e-b7b2-4840-8a59-38ca55bca221~rt_auto-rs_960.h?ordering=explicit';
 
 export class Header extends LitElement {
   static get properties() {
@@ -50,7 +51,10 @@ export class Header extends LitElement {
 // changed shipping to Missions
     return html`
       <div class="header">
-        <img class="sr" src=${sr} alt="Sr"/>
+        <img class="flower" src=${flower} alt="Flower"/>
+        <a href="/">
+          <img class="sr" src=${sr} alt="Sr"/>
+        </a>
       </div>
       <div class="navigationBar">
         <div class="topnav">

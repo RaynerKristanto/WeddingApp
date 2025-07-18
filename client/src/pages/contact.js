@@ -17,6 +17,8 @@ import "../components/leaderboard-item.js"
 import styles from './styles/contact.js';
 
 const noimage = new URL('../../assets/noimage.png', import.meta.url).href;
+const sherray = new URL('../sherray.webp', import.meta.url).href;
+
 const users = [
   { points: 250, name: "Clarissa Kristanto", status: "incomplete" },
   { points: 350, name: "Rayner Kristanto", status: "incomplete" },
@@ -65,7 +67,7 @@ export class Contact extends LitElement {
           ? html`
               <div class="user-rank">${this.selectedUserRank}.</div>
               <div class="user-name">${this.selectedUser.name}</div>
-              <img class="user-image" src=${noimage} alt="User Image" />
+              <img class="user-image" src=${sherray} alt="User Image" />
               <div class="user-points">
                 ${this.selectedUser.points} Points
               </div>
@@ -76,7 +78,7 @@ export class Contact extends LitElement {
           ${this.users.map((user, index) => html`
             <leaderboard-item
               .rank=${index + 1}
-              .imageSrc=${noimage}
+              .imageSrc=${sherray}
               .name=${user.name}
               .points=${user.points}
               @click=${() => this._selectUser(user)}

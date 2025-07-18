@@ -31,14 +31,12 @@ const styles = css`
 
   .flower {
     width: 122%;
-    margin-bottom: -120px;
+    margin-bottom: -130px;
   }
-  
-  h2 {
-    font-family: var(--base-font);
-    font-size: 25px;
-    color: var(--site-name-color);
-    margin-top: 0px;
+
+  .sr {
+    height: 100px;
+    width: auto;
   }
 
   .navigationBar {
@@ -49,23 +47,161 @@ const styles = css`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 50px;
-    padding: 0 1em;
+    height: 35px;
+    padding: 0 5px;
     position: relative;
     margin-bottom: 0px;
   }
 
-  .icon {
-    height: 45px;
-    font-size: 30px;
-    color: var(--site-name-color);
+  button {
+    background: none;
+    border: none;
     cursor: pointer;
-    z-index: 10;   
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
   }
 
-  .sr {
-    height: 75px;
-    width: auto;
+  [role=button],button {
+      cursor: pointer
+  }
+
+  .css-59byx {
+    background: none;
+    border: none;
+    font-size: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 3px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .css-prysaa {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+  }
+  
+  .css-nety4p {
+    display: block;
+    position: absolute;
+    height: 1.5px;
+    width: 100%;
+    background: #000;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+    top: 4px;
+  }
+
+  .css-v4to9h {
+    display: block;
+    position: absolute;
+    height: 1.5px;
+    width: 100%;
+    background: #000;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+    top: 12px;
+  }
+
+  .css-1cwt296 {
+    display: block;
+    position: absolute;
+    height: 1.5px;
+    width: 100%;
+    background: #000;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+    top: 12px;
+  }
+
+  .css-1lxkrq8 {
+    display: block;
+    position: absolute;
+    height: 1.5px;
+    width: 100%;
+    background: #000;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+    top: 20px;
+  }
+
+  .css-1wkn33 {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .css-prysaa.open .css-nety4p {
+    width: 0%;
+    height: 0px;
+    top: 12px;
+    left: 50%;
+  }
+
+  .css-prysaa.open .css-v4to9h {
+    transform: rotate(45deg) translate(-0, 0);
+  }
+
+  .css-prysaa.open .css-1cwt296 {
+    transform: rotate(-45deg);
+  }
+
+  .css-prysaa.open .css-1lxkrq8 {
+    width: 0%;
+    height: 0px;
+    top: 12px;
+    left: 50%;
   }
 
    #myLinks {

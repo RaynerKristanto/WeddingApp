@@ -21,7 +21,8 @@ import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 
 const sherray = new URL('../sherray.webp', import.meta.url).href;
-const bg = new URL('../watercolor.png', import.meta.url).href;;
+//const bg = new URL('../watercolor.png', import.meta.url).href;
+const bg = new URL('../wc.png', import.meta.url).href;;
 
 const firebaseConfig = {
   apiKey: "AIzaSyAntDVs4c7i_TPAqFXVhztEJRXd7Xj63u0",

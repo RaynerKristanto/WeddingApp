@@ -29,7 +29,7 @@ const styles = css`
   }
 
   .sr {
-    height: 100px;
+    height: 75px;
     width: auto;
   }
 

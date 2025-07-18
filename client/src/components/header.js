@@ -38,7 +38,10 @@ export class Header extends LitElement {
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
+    const hamburgerIcon = this.shadowRoot.querySelector('.css-prysaa');
+    hamburgerIcon.classList.toggle('open');
   }
+
 
   closeMenuOnClick(e) {
     // Optionally check if the click was on a menu link to be safe
@@ -58,9 +61,15 @@ export class Header extends LitElement {
       </div>
       <div class="navigationBar">
         <div class="topnav">
-          <a class="icon" @click=${this.toggleMenu}>
-            <span style="font-size: 30px;">☰</span>
-          </a>
+          <button data-testid="MobileNav__Button" class="css-59byx" @click=${this.toggleMenu}>
+            <div data-testid="HamburgerIcon" class="css-prysaa">
+              <span class="css-nety4p"></span>
+              <span class="css-v4to9h"></span>
+              <span class="css-1cwt296"></span>
+              <span class="css-1lxkrq8"></span>
+            </div>
+            <span class="css-1wkn33">Menu Button</span>
+          </button>
         </div>
         <div id="myLinks" 
           style="display: ${this.menuOpen ? 'block' : 'none'};" 

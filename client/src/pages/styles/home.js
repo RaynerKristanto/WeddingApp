@@ -21,6 +21,7 @@ const styles = css`
     text-align: center;
     padding: 10px;
     position: relative;
+    margin-top: 10px;
   }
 
   .loading {

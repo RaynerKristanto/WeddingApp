@@ -76,6 +76,13 @@ class Transaction(models.Model):
     def __str__(self):
         return f"{self.datetime} - {self.product_id}"
 
+class User(models.Model):
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
+    points = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.first_name} - {self.last_name} - {self.points}"
 
 def google_font_help():
     return "Any valid <a href='https://fonts.google.com/' target='_blank'>Google Font name</a>. Dynamically loaded at runtime."

@@ -18,7 +18,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from store.models import Product, SiteConfig, Testimonial, Transaction
+from store.models import Product, SiteConfig, Testimonial, Transaction, User
 
 
 @admin.register(Product)
@@ -49,6 +49,9 @@ class ProductAdmin(admin.ModelAdmin):
 class TransactionAdmin(admin.ModelAdmin):
     list_display = ("datetime", "product_id")
 
+@admin.register(User)
+class User(admin.ModelAdmin):
+    list_display = ("first_name", "last_name", "points")
 
 @admin.register(Testimonial)
 class TransactionAdmin(admin.ModelAdmin):

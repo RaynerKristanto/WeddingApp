@@ -29,13 +29,14 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
-from store.models import Product, SiteConfig, Testimonial, Transaction
+from store.models import Product, SiteConfig, Testimonial, Transaction, User
 from store.serializers import (
     ProductSerializer,
     SiteConfigSerializer,
     TestimonialSerializer,
     CartSerializer,
     CheckoutSerializer,
+    UserSerializer,
 )
 
 
@@ -63,6 +64,9 @@ def log_error(error_name, error_message, product):
         )
     )
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()

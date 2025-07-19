@@ -17,7 +17,17 @@
 import json
 
 from rest_framework import serializers
-from store.models import Product, SiteConfig, Testimonial
+from store.models import Product, SiteConfig, Testimonial, User
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "first_name",
+            "last_name",
+            "points"
+        ]
 
 
 class ProductSerializer(serializers.ModelSerializer):

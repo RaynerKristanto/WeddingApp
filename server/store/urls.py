@@ -28,6 +28,7 @@ router.get_api_root_view().cls.__doc__ = (
     "This is the Django REST Framework API, serving all endpoints."
 )
 
+router.register(r"users", views.UserViewSet, basename="user")
 router.register(r"products", views.ProductViewSet, basename="product")
 router.register(
     r"active/product", views.ActiveProductViewSet, basename="active_product"

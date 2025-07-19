@@ -110,6 +110,10 @@ export const getProductList = async () => {
   return _getAPI(`products/`);
 };
 
+export const getUserList = async () => {
+  return _getAPI(`users/`);
+}
+
 export const getSiteConfig = async () => {
   return _getAPI('active/site_config');
 };

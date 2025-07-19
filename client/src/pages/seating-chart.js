@@ -6,6 +6,7 @@ import tablesJson from '../../table.json' with { type: 'json' };
 export class SeatingChart extends LitElement {
   static properties = {
     tables: { type: Object },
+    searchInput: { type: String, state: true },
   };
 
   static styles = [styles];
@@ -13,10 +14,31 @@ export class SeatingChart extends LitElement {
   constructor() {
     super();
     this.tables = tablesJson || {};
+    this.searchInput = '';
+  }
+
+  searchName(e) {
+    this.searchInput = e.target.value.toLowerCase();
+  }
+
+  get filteredTables() {
+    if (!this.searchInput) {
+      return this.tables;
+    }
+
+    return Object.entries(this.tables).reduce((acc, [table, guests]) => {
+      const hasMatchingGuest = guests.some((guest) =>
+        guest.toLowerCase().includes(this.searchInput)
+      );
+      if (hasMatchingGuest) {
+        acc[table] = guests;
+      }
+      return acc;
+    }, {});
   }
 
   render() {
-    const tableEntries = Object.entries(this.tables);
+    const tableEntries = Object.entries(this.filteredTables);
     const tablePairs = [];
     for (let i = 0; i < tableEntries.length; i += 2) {
       tablePairs.push(tableEntries.slice(i, i + 2));
@@ -27,7 +49,12 @@ export class SeatingChart extends LitElement {
         <h1>Seating Chart</h1>
         <div class="searchBar">
           <label for="search">Search:</label>
-          <input type="text" placeholder="Name" />
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Name"
+            @input=${this.searchName}
+          />
         </div>
         <div class="seatingWrapper">
           ${tablePairs.length > 0
@@ -36,7 +63,7 @@ export class SeatingChart extends LitElement {
                   <div class="table-row">
                     ${pair.map(
                       ([table, guests]) => html`
-                        <div class="table-container">
+                        <div class="table-container" id="${table}">
                           <div class="table">${table}</div>
                           <ul>
                             ${guests.map((guest) => html`<li>${guest}</li>`)}
@@ -47,7 +74,9 @@ export class SeatingChart extends LitElement {
                   </div>
                 `
               )
-            : html`<p>No table mappings found in package.json.</p>`}
+            : this.searchInput
+            ? html`<p>No guest found with that name.</p>`
+            : html`<p>No table mappings found.</p>`}
         </div>
       </div>
     `;

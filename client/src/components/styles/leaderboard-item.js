@@ -7,7 +7,6 @@ const styles = css`
     align-items: center;
     width: 100%;
     padding: 10px;
-    color: var(--site-name-color)
   }
   .user-name {
     margin-left: 10px;
@@ -24,7 +23,6 @@ const styles = css`
 
   .rank{
    font-size: 1.5em;
-   color: var(--site-name-color)
    text-align: right;
   }
 

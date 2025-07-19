@@ -30,6 +30,10 @@ const routes = [
     pattern: 'sign-in',
   },
   {
+    name: 'seating-chart',
+    pattern: 'seating-chart',
+  },
+  {
     name: 'shipping',
     pattern: 'shipping',
   },

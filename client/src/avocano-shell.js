@@ -30,6 +30,7 @@ import './pages/product-list.js';
 import './pages/shipping.js';
 import './pages/not-found.js';
 import './pages/error.js';
+import './pages/seating-chart.js';
 
 // Components
 import './components/checkout-form.js';
@@ -152,7 +153,7 @@ export class AvocanoShell extends router(LitElement) {
             .cart=${this.state.cart}
           ></app-header>
           <app-main active-route=${this.route}>
-          <div class="route" route="sign-in">
+            <div class="route" route="sign-in">
               <app-sign-in></app-sign-in>
             </div>
             <div class="route" route="home">
@@ -166,6 +167,9 @@ export class AvocanoShell extends router(LitElement) {
             </div>
             <div class="route" route="product-list">
               <app-product-list></app-product-list>
+            </div>
+            <div class="route" route="seating-chart">
+              <app-seating-chart></app-seating-chart>
             </div>
             <div class="route" route="shipping">
               <app-shipping></app-shipping>

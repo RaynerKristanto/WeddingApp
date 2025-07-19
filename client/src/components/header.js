@@ -78,6 +78,7 @@ export class Header extends LitElement {
           class="${this.menuOpen ? 'show' : ''}">
           <div class="linksContainer">
             <app-link href="/products">Menu</app-link>
+            <app-link href="/seating-chart">Seating Chart</app-link>
             <app-link href="/shipping">Missions</app-link>
             <app-link href="/contact">Leaderboard</app-link>
             <app-link href="/sign-in">Sign In</app-link>

@@ -65,7 +65,7 @@ def log_error(error_name, error_message, product):
     )
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.order_by("-points").all()
     serializer_class = UserSerializer
 
 class ProductViewSet(viewsets.ModelViewSet):

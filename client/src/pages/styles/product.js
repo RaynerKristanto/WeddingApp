@@ -20,40 +20,6 @@ const styles = css`
     font-size: 2.5em;
   }
 
-  .productBase {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  img.productimage {
-    height: auto;
-    width: 100%;
-  }
-
-  .productItem {
-    display: flex;
-    align-item: flex-start;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    background: white;
-    cursor: pointer;
-  }
-
-  .productimageWrapper {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    border-radius: 10px;
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-    margin-right: 20px;
-  }
-
   .productContainer {
     display: flex;
     align-items: center;
@@ -72,18 +38,29 @@ const styles = css`
     max-width: 500px;
     margin: auto;
   }
-
-  .productItemContent {
+  
+  .courseContainer {
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
-    align-items: flex-start;
-    margin: 10px;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .course {
+    font-size: 1.2em;
   }
 
-  .itemTitle {
-    font-weight: 600;
-    margin-bottom: 15px;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  
+  .desc {
+    font-size: .7em;
+    font-style: italic;
+    padding-bottom: 5px;
   }
 `;
 

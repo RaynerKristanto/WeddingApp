@@ -18,7 +18,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from store.models import Product, SiteConfig, Testimonial, Transaction, User
+from store.models import Product, SiteConfig, Testimonial, Transaction, User, Mission, MissionStatus
 
 
 @admin.register(Product)
@@ -52,6 +52,14 @@ class TransactionAdmin(admin.ModelAdmin):
 @admin.register(User)
 class User(admin.ModelAdmin):
     list_display = ("first_name", "last_name", "points")
+
+@admin.register(Mission)
+class Mission(admin.ModelAdmin):
+    list_display = ("description", "points")
+
+@admin.register(MissionStatus)
+class MissionStatus(admin.ModelAdmin):
+    list_display = ("user_id", "mission_id", "completed")
 
 @admin.register(Testimonial)
 class TransactionAdmin(admin.ModelAdmin):

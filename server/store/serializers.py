@@ -41,6 +41,22 @@ class UserMissionStatusSerializer(serializers.ModelSerializer):
         fields = ("mission_id", "description", "points", "completed")
 
 
+class UpdateMissionStatusSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
+    mission_id = serializers.IntegerField()
+    completed = serializers.BooleanField()
+
+    def validate_user_id(self, value):
+        if not User.objects.filter(pk=value).exists():
+            raise serializers.ValidationError("User with this ID does not exist.")
+        return value
+
+    def validate_mission_id(self, value):
+        if not Mission.objects.filter(pk=value).exists():
+            raise serializers.ValidationError("Mission with this ID does not exist.")
+        return value
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

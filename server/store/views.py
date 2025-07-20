@@ -45,6 +45,7 @@ from store.serializers import (
     ProductSerializer,
     SiteConfigSerializer,
     TestimonialSerializer,
+    UpdateMissionStatusSerializer,
     UserSerializer,
     UserMissionStatusSerializer,
 )
@@ -105,6 +106,41 @@ class MissionViewSet(viewsets.ModelViewSet):
         mission_statuses = MissionStatus.objects.filter(user_id=user_id).select_related("mission_id")
         serializer = UserMissionStatusSerializer(mission_statuses, many=True)
         return Response(serializer.data)
+
+    @action(detail=False, methods=["post"], url_path="update-status")
+    def update_status(self, request):
+        """
+        Updates the completion status of a mission for a user and recalculates points.
+        Expects 'user_id', 'mission_id', and 'completed' in the request body.
+        """
+        serializer = UpdateMissionStatusSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        data = serializer.validated_data
+        user_id = data.get("user_id")
+        mission_id = data.get("mission_id")
+        completed = data.get("completed")
+
+        # Update or create the mission status
+        mission_status, _ = MissionStatus.objects.update_or_create(
+            user_id_id=user_id,
+            mission_id_id=mission_id,
+            defaults={"completed": completed},
+        )
+
+        # Recalculate user's total points to ensure consistency
+        user = User.objects.get(pk=user_id)
+        completed_statuses = MissionStatus.objects.filter(
+            user_id=user, completed=True
+        ).select_related("mission_id")
+        total_points = sum(status.mission_id.points for status in completed_statuses)
+        user.points = total_points
+        user.save()
+
+        # Return the updated status object
+        response_serializer = UserMissionStatusSerializer(mission_status)
+        return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
 class ProductViewSet(viewsets.ModelViewSet):

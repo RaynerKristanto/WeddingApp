@@ -101,6 +101,41 @@ export const createUser = async (firstName, lastName) => {
     console.error(error);
   }
 }
+export const updateMissionStatus = async (userId, missionId, completed) => {
+  const uri = 'missions/update-status/';
+  const { API_URL } = getConfig();
+  const url = `${API_URL}/${uri}`;
+
+  try {
+    const token = await _getAPI('csrf_token');
+    const payload = {
+      user_id: userId,
+      mission_id: missionId,
+      completed: completed,
+    };
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': token.csrfToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      ...baseRequest,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Failed to update mission status:', errorData);
+      return { error: errorData };
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error updating mission status:', error);
+    return { error };
+  }
+};
 export const buyProduct = async (productId, callback) => {
   let uri = `products/${productId}/purchase/`;
   const { API_URL } = getConfig();

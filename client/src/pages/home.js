@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import { LitElement, html } from 'lit';
-import { getActiveProduct, getUserList } from '../utils/fetch.js';
 import cache from '../utils/cache.js';
 import styles from './styles/home.js';
 import '../components/product-item.js';
@@ -24,12 +23,6 @@ const sherray = new URL('../sherray.webp', import.meta.url).href;
 //const bg = new URL('../watercolor.png', import.meta.url).href;
 const bg = new URL('../wc.png', import.meta.url).href;;
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAntDVs4c7i_TPAqFXVhztEJRXd7Xj63u0",
-  authDomain: "fair-backbone-447521-d8.firebaseapp.com",
-
-};
-
 export class Home extends LitElement {
 
   constructor() {
@@ -37,13 +30,8 @@ export class Home extends LitElement {
     this.title = 'Home';
     this.state = {
       status: 'loading',
-      productItem: {},
       user: null,
     };
-    const app = initializeApp(firebaseConfig);
-    this.auth = getAuth();
-    this.ui = null;
-    console.log("auth" + this.auth);
   }
 
   static get styles() {
@@ -55,84 +43,9 @@ export class Home extends LitElement {
     cache.deleteDB();
   }
 
-  async firstUpdated() {
-    console.log("firstUpdated");
-
-    let users = await getUserList();
-    console.log("users list: ", users);
-
-    const productItem = await getActiveProduct();
-    this.state = {
-      ...this.state,
-      status: 'loaded',
-      productItem,
-    };
-    // Observe authentication state changes
-    this.unsubscribe = this.auth.onAuthStateChanged((user) => {
-      console.log("auth state changed");
-
-      this.state.user = user;
-      console.log(this.state)
-      this.requestUpdate();
-    });
-
-    if (productItem?.apiError) {
-      this.state.apiError = productItem.apiError;
-    }
-
-    this.requestUpdate();
-  }
-
-  updated() {
-    if (this.auth && !this.ui) {
-      var uiConfig = {
-        // Add your configurations
-        signInSuccessUrl: '/your-app/dashboard', // URL to redirect after successful sign-in. Replace with your URL!
-        signInOptions: [
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          // Add other providers as needed (Facebook, Twitter, etc.)
-        ],
-        //Optional:  tosUrl, privacyPolicyUrl, etc for terms of service and privacy policy
-      };
-
-      this.ui = new firebaseui.auth.AuthUI(this.auth);
-      // if (this.state == 'loaded') {
-        // console.log("state is loaded")
-        this.ui.start('#firebaseui-auth-container', uiConfig);
-      // }
-    }
-    
-  }
-
   render() {
-    console.log("state render: " + this.state.user?.displayName);
-    const { status, productItem, apiError, user} = this.state;
-    console.log("render");
-    if (apiError) {
-      return html`<div class="homeBase">
-        <p>No active product found. Check <a href="/products">Products</a>.</p>
-      </div>`;
-    }
-    console.log("user render: " + user);
-    if (user) {
-      console.log("rendering user not null: " + user.displayName);
-      return html`
-      <div class="homeBase">
-        <p class="loading">Welcome, ${user.displayName || user.email}!</p>  <!-- Display user info -->
-        <div id="firebaseui-auth-container"></div>
-        ${status === 'loading'
-          ? html`<p class="loading">loading... 🥑</p>`
-          : html`<app-product-item
-              .productId="{this.productId}"
-              .productItem=${productItem}
-            ></app-product-item>`}
-      </div>
-        `;
-    }
     return html`
       <div class="homeBase">
-        <div id="firebaseui-auth-container"></div>
         <div class="titleContainer">
           <img class="bg" src=${bg} alt="Bg"/>
           <h1>SHERRY & RAYNER'S</h1>

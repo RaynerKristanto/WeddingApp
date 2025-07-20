@@ -100,9 +100,7 @@ export class ProductList extends navigator(LitElement) {
             <div class="course">Dessert</div>
                 <ul>
                   <li>Cake</li>
-                  <li class="desc">Grilled steak<li>
-                  <li>Al Pastor</li>
-                  <li class="desc">Spicy pork with pineapple<li>
+                  <li class="desc">Oreo, cheese mango, matcha yuzu<li>
           </div>
         </div>
       </div>

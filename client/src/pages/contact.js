@@ -15,27 +15,17 @@
 import { LitElement, html } from 'lit';
 import "../components/leaderboard-item.js"
 import styles from './styles/contact.js';
+import { getUserList } from '../utils/fetch.js';
+
 
 const noimage = new URL('../../assets/noimage.png', import.meta.url).href;
-const sherray = new URL('../sherray.webp', import.meta.url).href;
-
-const users = [
-  { points: 250, name: "Clarissa Kristanto", status: "incomplete" },
-  { points: 350, name: "Rayner Kristanto", status: "incomplete" },
-  { points: 400, name: "Sherry Yao", status: "incomplete" },
-  { points: 50, name: "Labubu", status: "incomplete" },
-  { points: 25, name: "Cry Baby", status: "incomplete" },
-  { points: 150, name: "Lafufu", status: "incomplete" },
-  { points: 50, name: "Luffy", status: "incomplete" },
-  { points: 200, name: "Miffy", status: "incomplete" },
-  { points: 125, name: "Labubu", status: "incomplete" },
-  { points: 225, name: "Cry Baby", status: "incomplete" },
-];
 
 export class Contact extends LitElement {
   static get properties() {
     return {
       selectedUser: { type: Object, state: true },
+      users: { type: Array, state: true },
+      status: { type: String, state: true },
     };
   }
   static get styles() {
@@ -45,9 +35,25 @@ export class Contact extends LitElement {
   constructor() {
     super();
     this.title = 'Leaderboard';
-    this.users = users.map(u => ({ ...u }));
-    this.users.sort((a, b) => b.points - a.points);
-    this.selectedUser = this.users[0];
+    this.users = [];
+    this.selectedUser = null;
+    this.status = 'loading';
+  }
+
+  async firstUpdated() {
+    const userList = await getUserList();
+    // Assuming getUserList returns an array of users with name and points
+    if (userList && !userList.apiError) {
+      this.users = userList.map(u => ({ ...u, status: 'incomplete' }));
+      this.users.sort((a, b) => (b.points || 0) - (a.points || 0));
+      this.selectedUser = this.users[0] || null;
+    } else {
+      console.error(
+        'Could not fetch user list for leaderboard',
+        userList?.apiError
+      );
+    }
+    this.status = 'loaded';
   }
 
   _selectUser(user) {
@@ -58,7 +64,21 @@ export class Contact extends LitElement {
     if (!this.selectedUser) return null;
     return this.users.findIndex(u => u === this.selectedUser) + 1;
   }
+
   render() {
+    if (this.status === 'loading') {
+      return html`<div class="contactContainer">
+        <h1>Leaderboard</h1>
+        <app-loading></app-loading>
+      </div>`;
+    }
+
+    if (this.users.length === 0) {
+      return html`<div class="contactContainer">
+        <h1>Leaderboard</h1>
+        <p>Leaderboard is empty.</p>
+      </div>`;
+    }
     return html`
       <div class="contactContainer">
         <h1>Leaderboard</h1>
@@ -66,8 +86,8 @@ export class Contact extends LitElement {
         ${this.selectedUser
           ? html`
               <div class="user-rank">${this.selectedUserRank}.</div>
-              <div class="user-name">${this.selectedUser.name}</div>
-              <img class="user-image" src=${sherray} alt="User Image" />
+              <div class="user-name">${this.selectedUser.first_name} ${this.selectedUser.last_name}</div>
+              <img class="user-image" src=${this.selectedUser.image || noimage} alt="User Image" />
               <div class="user-points">
                 ${this.selectedUser.points} Points
               </div>
@@ -78,8 +98,8 @@ export class Contact extends LitElement {
           ${this.users.map((user, index) => html`
             <leaderboard-item
               .rank=${index + 1}
-              .imageSrc=${sherray}
-              .name=${user.name}
+              .imageSrc=${user.image || noimage}
+              .name=${`${user.first_name} ${user.last_name}`}
               .points=${user.points}
               @click=${() => this._selectUser(user)}
               style="cursor: pointer;"

@@ -37,7 +37,7 @@ const styles = css`
   }
 
   .user-name {
-    font-size: 1.6em;
+    font-size: 1.4em;
     margin-left: 10px;
     margin-right: auto;
     width: 120px;
@@ -61,10 +61,10 @@ const styles = css`
   }
 
   .user-points {
-    font-size: 1.6em;
+    font-size: 1.4em;
     margin-right: 10px;
     margin-left: auto;
-    width: 120px; 
+    width: 115px; 
     text-align: right; 
     color: white;
   }

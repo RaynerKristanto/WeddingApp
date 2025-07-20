@@ -25,6 +25,8 @@ export class SignIn extends LitElement {
     this.state = {
       status: 'loading',
     };
+    this.firstName = '';
+    this.lastName = '';
   }
 
   static get styles() {
@@ -48,8 +50,6 @@ export class SignIn extends LitElement {
 
   render() {
     const { status } = this.state;
-
-
 
     return html`
       <div class="signInContainer">
@@ -75,7 +75,10 @@ export class SignIn extends LitElement {
     `;
   }
   async createUserHelper() {
-    await createUser("Rayner", "Kristanto");
+    this.firstName = this.shadowRoot.querySelector('input[name="first_name"]').value;
+    this.lastName = this.shadowRoot.querySelector('input[name="last_name"]').value;
+    console.log(this.firstName, this.lastName);
+    await createUser(this.firstName, this.lastName);
   }
 }
 

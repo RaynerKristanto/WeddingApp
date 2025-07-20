@@ -173,6 +173,15 @@ export const getUserList = async () => {
   return _getAPI(`users/`);
 }
 
+export const getMissionsForUser = async userId => {
+  if (!userId) {
+    const errorMessage = 'A userId is required to get missions.';
+    console.error(errorMessage);
+    return { apiError: { message: errorMessage } };
+  }
+  return _getAPI(`missions/getMissionsForUsers/?user_id=${userId}`);
+};
+
 export const getSiteConfig = async () => {
   return _getAPI('active/site_config');
 };

@@ -16,8 +16,6 @@ import { LitElement, html } from 'lit';
 import cache from '../utils/cache.js';
 import styles from './styles/home.js';
 import '../components/product-item.js';
-import { getAuth } from "firebase/auth"; 
-import { initializeApp } from "firebase/app";
 
 const sherray = new URL('../sherray.webp', import.meta.url).href;
 //const bg = new URL('../watercolor.png', import.meta.url).href;

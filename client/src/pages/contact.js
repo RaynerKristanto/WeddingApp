@@ -15,6 +15,7 @@
 import { LitElement, html } from 'lit';
 import "../components/leaderboard-item.js"
 import styles from './styles/contact.js';
+import cache from '../utils/cache.js';
 import { getUserList } from '../utils/fetch.js';
 
 
@@ -42,6 +43,8 @@ export class Contact extends LitElement {
 
   async firstUpdated() {
     const userList = await getUserList();
+    let userId = cache.get('userId');
+    console.log("userId: ", userId);
     // Assuming getUserList returns an array of users with name and points
     if (userList && !userList.apiError) {
       this.users = userList.map(u => ({ ...u, status: 'incomplete' }));

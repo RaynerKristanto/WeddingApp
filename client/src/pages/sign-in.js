@@ -13,12 +13,13 @@
 // limitations under the License.
 
 import { LitElement, html } from 'lit';
+import { navigator } from '../vendor/lit-element-router-2.0.3a/lit-element-router.js';
 import { createUser } from '../utils/fetch.js';
 import cache from '../utils/cache.js';
 import styles from './styles/sign-in.js';
 import '../components/product-item.js';
 
-export class SignIn extends LitElement {
+export class SignIn extends navigator(LitElement) {
   constructor() {
     super();
     this.title = 'Sign In';
@@ -49,7 +50,6 @@ export class SignIn extends LitElement {
   }
 
   render() {
-    const { status } = this.state;
 
     return html`
       <div class="signInContainer">
@@ -68,17 +68,22 @@ export class SignIn extends LitElement {
           slot="primaryAction"
           @click="${this.createUserHelper}"
         >
-        ${status === 'loading'
-          ? html`<app-loading></app-loading>`
-          : html`<div id="firebaseui-auth-container"></div>`}
       </div>
     `;
   }
   async createUserHelper() {
     this.firstName = this.shadowRoot.querySelector('input[name="first_name"]').value;
     this.lastName = this.shadowRoot.querySelector('input[name="last_name"]').value;
-    console.log(this.firstName, this.lastName);
-    await createUser(this.firstName, this.lastName);
+    const user = await createUser(this.firstName, this.lastName);
+    if (user && !user.apiError) {
+      // Store the returned user ID in the cache
+      await cache.set('userId', user.id);
+      // Navigate to the leaderboard page
+      this.navigate('/contact');
+    } else {
+      // TODO: Show an error message to the user on the UI
+      console.error('Failed to create user:', user?.apiError);
+    }
   }
 }
 

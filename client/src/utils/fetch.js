@@ -82,6 +82,7 @@ export const createUser = async (firstName, lastName) => {
   const { API_URL } = getConfig();
 
   let url = `${API_URL}/${uri}`;
+  let response;
   try {
     const token = await _getAPI('csrf_token');
     const payload = {
@@ -89,7 +90,7 @@ export const createUser = async (firstName, lastName) => {
       last_name: lastName,
       points: 0,
     };
-    await fetch(url, {
+    response = await fetch(url, {
       method: 'POST',
       headers: { 'X-CSRFToken': token.csrfToken, 
         'Accept': 'application/json',
@@ -97,10 +98,16 @@ export const createUser = async (firstName, lastName) => {
       body: JSON.stringify(payload),
       ...baseRequest,
     });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => response.text());
+      return { apiError: { message: 'Failed to create user', error: errorData } };
+    }
+    return await response.json();
   } catch (error) {
-    console.error(error);
+    console.error('Error creating user:', error);
+    return { apiError: { message: 'Error creating user', error: error.toString() } };
   }
-}
+};
 export const updateMissionStatus = async (userId, missionId, completed) => {
   const uri = 'missions/update-status/';
   const { API_URL } = getConfig();

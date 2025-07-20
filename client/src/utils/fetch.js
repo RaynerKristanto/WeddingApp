@@ -77,6 +77,30 @@ export const getActiveProduct = async () => {
   return _getAPI('active/product/');
 };
 
+export const createUser = async (firstName, lastName) => {
+  let uri = "users/"
+  const { API_URL } = getConfig();
+
+  let url = `${API_URL}/${uri}`;
+  try {
+    const token = await _getAPI('csrf_token');
+    const payload = {
+      first_name: firstName,
+      last_name: lastName,
+      points: 0,
+    };
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'X-CSRFToken': token.csrfToken, 
+        'Accept': 'application/json',
+        'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      ...baseRequest,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
 export const buyProduct = async (productId, callback) => {
   let uri = `products/${productId}/purchase/`;
   const { API_URL } = getConfig();

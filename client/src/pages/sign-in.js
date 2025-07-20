@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { LitElement, html } from 'lit';
-import { getActiveProduct } from '../utils/fetch.js';
+import { createUser } from '../utils/fetch.js';
 import cache from '../utils/cache.js';
 import styles from './styles/home.js';
 import '../components/product-item.js';
@@ -24,7 +24,6 @@ export class SignIn extends LitElement {
     this.title = 'Sign In';
     this.state = {
       status: 'loading',
-      productItem: {},
     };
   }
 
@@ -38,37 +37,36 @@ export class SignIn extends LitElement {
   }
 
   async firstUpdated() {
-    const productItem = await getActiveProduct();
-
     this.state = {
       ...this.state,
       status: 'loaded',
-      productItem,
     };
 
-    if (productItem?.apiError) {
-      this.state.apiError = productItem.apiError;
-    }
 
     this.requestUpdate();
   }
 
   render() {
-    const { status, productItem, apiError } = this.state;
+    const { status } = this.state;
 
-    if (apiError) {
-      return html`<div class="homeBase">
-        <p>No active product found. Check <a href="/products">Products</a>.</p>
-      </div>`;
-    }
+
 
     return html`
       <div class="homeBase">
+     <mwc-button
+          label="Sign up"
+          class="dialogButton"
+          slot="primaryAction"
+          @click="${this.createUserHelper}"
+        >
         ${status === 'loading'
           ? html`<p class="loading">loading... 🥑</p>`
           : html`<div id="firebaseui-auth-container"></div>`}
       </div>
     `;
+  }
+  async createUserHelper() {
+    await createUser("Rayner", "Kristanto");
   }
 }
 

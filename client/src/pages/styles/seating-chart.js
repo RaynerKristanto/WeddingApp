@@ -21,7 +21,8 @@ const styles = css`
     font-size: 1em;
     border-radius: 20px;
     border: 1px solid lightgray;
-    padding: 10px;
+    padding: 5px;
+    padding-left: 10px;
   }
 
   .seatingWrapper {

@@ -59,13 +59,13 @@ export class ProductList extends navigator(LitElement) {
                   <li> Shiso Honey Prawns</li>
                   <li class="desc">Served with spiced mango sauce<li>
                   <li> Pork Belly Spoons</li>
-                  <li class="desc">Served with grilled peach poblano chutney<li>
+                  <li class="desc">Served with grilled peach poblano chutney (GF)<li>
           </div>
           <div class="courseContainer">
             <div class="course">Salad and Bread Service</div>
                 <ul>
                   <li>Salad</li>
-                  <li class="desc">Served with <li>
+                  <li class="desc">Served with (V)<li>
                   <li>Chef's Selection of Macrina Rolls</li>
                   <li class="desc">With a choice of whipped, herbed chive blossom butter, 
                   or roasted garlic butter<li>
@@ -74,17 +74,17 @@ export class ProductList extends navigator(LitElement) {
             <div class="course">Entrees</div>
                 <ul>
                   <li>Herb-Crusted Sirloin</li>
-                  <li class="desc">Served with wild mushroom demi glaze<li>
+                  <li class="desc">Served with wild mushroom demi glaze (GF)<li>
                   <li>Citrus Rubbed Salmon</li>
-                  <li class="desc">Served with honey lemon coriander sauce<li>
+                  <li class="desc">Served with honey lemon coriander sauce (GF)<li>
           </div>
           <div class="courseContainer">
             <div class="course">Sides</div>
                 <ul>
                   <li>Cilantro Lime Rice</li>
-                  <li class="desc">Jasmine rice, cilantro, lime<li>
+                  <li class="desc">Jasmine rice, cilantro, lime (V, GF)<li>
                   <li>Foraged Mushrooms</li>
-                  <li class="desc">PNW wild mushrooms, onions, garlic butter<li>
+                  <li class="desc">PNW wild mushrooms, onions, garlic butter (Veg, GF)<li>
           </div>
           <div class="courseContainer">
             <div class="course">Taco Bar</div>
@@ -94,7 +94,7 @@ export class ProductList extends navigator(LitElement) {
                   <li>Al Pastor</li>
                   <li class="desc">Spicy pork with pineapple<li>
                   <li>Vegetariano</li>
-                  <li class="desc">Veggies<li>
+                  <li class="desc">Veggies (V)<li>
           </div>
           <div class="courseContainer">
             <div class="course">Dessert</div>

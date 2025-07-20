@@ -15,7 +15,7 @@
 import { LitElement, html } from 'lit';
 import { createUser } from '../utils/fetch.js';
 import cache from '../utils/cache.js';
-import styles from './styles/home.js';
+import styles from './styles/sign-in.js';
 import '../components/product-item.js';
 
 export class SignIn extends LitElement {
@@ -52,15 +52,24 @@ export class SignIn extends LitElement {
 
 
     return html`
-      <div class="homeBase">
-     <mwc-button
-          label="Sign up"
+      <div class="signInContainer">
+        <h1>Sign In</h1>
+        <div class="name">
+          <label>First Name:</label>
+          <input type="text" name="first_name" placeholder:"First Name" required>
+        </div>
+        <div class="name">
+          <label>Last Name:</label>
+          <input type="text" name="last_name" placeholder:"Last Name" required>
+        </div>
+        <mwc-button
+          label="Sign Up"
           class="dialogButton"
           slot="primaryAction"
           @click="${this.createUserHelper}"
         >
         ${status === 'loading'
-          ? html`<p class="loading">loading... 🥑</p>`
+          ? html`<app-loading></app-loading>`
           : html`<div id="firebaseui-auth-container"></div>`}
       </div>
     `;

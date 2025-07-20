@@ -40,7 +40,7 @@ export class Home extends LitElement {
       productItem: {},
       user: null,
     };
-    const app = initializeApp(firebaseConfig);
+    initializeApp(firebaseConfig);
     this.auth = getAuth();
     this.ui = null;
     console.log("auth" + this.auth);
@@ -61,11 +61,9 @@ export class Home extends LitElement {
     let users = await getUserList();
     console.log("users list: ", users);
 
-    const productItem = await getActiveProduct();
-    this.state = {
+        this.state = {
       ...this.state,
       status: 'loaded',
-      productItem,
     };
     // Observe authentication state changes
     this.unsubscribe = this.auth.onAuthStateChanged((user) => {
@@ -75,10 +73,6 @@ export class Home extends LitElement {
       console.log(this.state)
       this.requestUpdate();
     });
-
-    if (productItem?.apiError) {
-      this.state.apiError = productItem.apiError;
-    }
 
     this.requestUpdate();
   }

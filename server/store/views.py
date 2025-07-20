@@ -25,18 +25,28 @@ from django.middleware.csrf import get_token
 from django.views.decorators.http import require_http_methods
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
-from rest_framework import viewsets
+from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
-from store.models import Product, SiteConfig, Testimonial, Transaction, User
+from store.models import (
+    Mission,
+    MissionStatus,
+    Product,
+    SiteConfig,
+    Testimonial,
+    Transaction,
+    User,
+)
 from store.serializers import (
+    CartSerializer,
+    CheckoutSerializer,
+    MissionSerializer,
     ProductSerializer,
     SiteConfigSerializer,
     TestimonialSerializer,
-    CartSerializer,
-    CheckoutSerializer,
     UserSerializer,
+    UserMissionStatusSerializer,
 )
 
 
@@ -67,6 +77,35 @@ def log_error(error_name, error_message, product):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.order_by("-points").all()
     serializer_class = UserSerializer
+
+class MissionViewSet(viewsets.ModelViewSet):
+    queryset = Mission.objects.all()
+    serializer_class = MissionSerializer
+
+    @action(detail=False, methods=["get"])
+    def getMissionsForUsers(self, request):
+        """
+        Returns a list of missions for a given user, including their completion status.
+        Requires a `user_id` query parameter.
+        e.g. /api/missions/getMissionsForUsers/?user_id=1
+        """
+        user_id = request.query_params.get("user_id")
+        if not user_id:
+            return Response(
+                {"error": "A 'user_id' query parameter is required."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if not User.objects.filter(pk=user_id).exists():
+            return Response(
+                {"error": f"User with id {user_id} not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        mission_statuses = MissionStatus.objects.filter(user_id=user_id).select_related("mission_id")
+        serializer = UserMissionStatusSerializer(mission_statuses, many=True)
+        return Response(serializer.data)
+
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()

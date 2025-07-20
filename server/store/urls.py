@@ -29,6 +29,7 @@ router.get_api_root_view().cls.__doc__ = (
 )
 
 router.register(r"users", views.UserViewSet, basename="user")
+router.register(r"missions", views.MissionViewSet, basename="mission")
 router.register(r"products", views.ProductViewSet, basename="product")
 router.register(
     r"active/product", views.ActiveProductViewSet, basename="active_product"

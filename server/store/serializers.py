@@ -17,7 +17,29 @@
 import json
 
 from rest_framework import serializers
-from store.models import Product, SiteConfig, Testimonial, User
+from store.models import Mission, MissionStatus, Product, SiteConfig, Testimonial, User
+
+
+class MissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mission
+        fields = ["id", "description", "points"]
+
+
+class MissionStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MissionStatus
+        fields = ["id", "user_id", "mission_id", "completed"]
+
+
+class UserMissionStatusSerializer(serializers.ModelSerializer):
+    description = serializers.CharField(source="mission_id.description", read_only=True)
+    points = serializers.IntegerField(source="mission_id.points", read_only=True)
+
+    class Meta:
+        model = MissionStatus
+        fields = ("mission_id", "description", "points", "completed")
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

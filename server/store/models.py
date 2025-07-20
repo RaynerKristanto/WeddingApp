@@ -76,6 +76,13 @@ class Transaction(models.Model):
     def __str__(self):
         return f"{self.datetime} - {self.product_id}"
 
+class Mission(models.Model):
+    description = models.CharField(max_length=1000)
+    points = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.description} - {self.points}"
+
 class User(models.Model):
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
@@ -83,6 +90,23 @@ class User(models.Model):
 
     def __str__(self):
         return f"{self.first_name} - {self.last_name} - {self.points}"
+
+class MissionStatus(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    mission_id = models.ForeignKey(Mission, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"User: {self.user_id.first_name} - Mission: {self.mission_id.description} - Completed: {self.completed}"
+
+class MissionItem(models.Model):
+    description = models.CharField(max_length=1000)
+    points = models.IntegerField()
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.description} - {self.points} - {self.completed}"
+
 
 def google_font_help():
     return "Any valid <a href='https://fonts.google.com/' target='_blank'>Google Font name</a>. Dynamically loaded at runtime."

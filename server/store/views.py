@@ -25,18 +25,29 @@ from django.middleware.csrf import get_token
 from django.views.decorators.http import require_http_methods
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
-from rest_framework import viewsets
+from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
-from store.models import Product, SiteConfig, Testimonial, Transaction, User
+from store.models import (
+    Mission,
+    MissionStatus,
+    Product,
+    SiteConfig,
+    Testimonial,
+    Transaction,
+    User,
+)
 from store.serializers import (
+    CartSerializer,
+    CheckoutSerializer,
+    MissionSerializer,
     ProductSerializer,
     SiteConfigSerializer,
     TestimonialSerializer,
-    CartSerializer,
-    CheckoutSerializer,
+    UpdateMissionStatusSerializer,
     UserSerializer,
+    UserMissionStatusSerializer,
 )
 
 
@@ -67,6 +78,70 @@ def log_error(error_name, error_message, product):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.order_by("-points").all()
     serializer_class = UserSerializer
+
+class MissionViewSet(viewsets.ModelViewSet):
+    queryset = Mission.objects.all()
+    serializer_class = MissionSerializer
+
+    @action(detail=False, methods=["get"])
+    def getMissionsForUsers(self, request):
+        """
+        Returns a list of missions for a given user, including their completion status.
+        Requires a `user_id` query parameter.
+        e.g. /api/missions/getMissionsForUsers/?user_id=1
+        """
+        user_id = request.query_params.get("user_id")
+        if not user_id:
+            return Response(
+                {"error": "A 'user_id' query parameter is required."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if not User.objects.filter(pk=user_id).exists():
+            return Response(
+                {"error": f"User with id {user_id} not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        mission_statuses = MissionStatus.objects.filter(user_id=user_id).select_related("mission_id")
+        serializer = UserMissionStatusSerializer(mission_statuses, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=["post"], url_path="update-status")
+    def update_status(self, request):
+        """
+        Updates the completion status of a mission for a user and recalculates points.
+        Expects 'user_id', 'mission_id', and 'completed' in the request body.
+        """
+        serializer = UpdateMissionStatusSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        data = serializer.validated_data
+        user_id = data.get("user_id")
+        mission_id = data.get("mission_id")
+        completed = data.get("completed")
+
+        # Update or create the mission status
+        mission_status, _ = MissionStatus.objects.update_or_create(
+            user_id_id=user_id,
+            mission_id_id=mission_id,
+            defaults={"completed": completed},
+        )
+
+        # Recalculate user's total points to ensure consistency
+        user = User.objects.get(pk=user_id)
+        completed_statuses = MissionStatus.objects.filter(
+            user_id=user, completed=True
+        ).select_related("mission_id")
+        total_points = sum(status.mission_id.points for status in completed_statuses)
+        user.points = total_points
+        user.save()
+
+        # Return the updated status object
+        response_serializer = UserMissionStatusSerializer(mission_status)
+        return Response(response_serializer.data, status=status.HTTP_200_OK)
+
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()

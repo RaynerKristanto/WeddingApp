@@ -23,21 +23,14 @@ const styles = css`
 
   .shippingContainer {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    align-items: center; 
-  }
-  .shippingWrapper {
-    display: flex;
-    width: 366px;
-  }
-  table {
-    border-spacing: 5px;
-    width: 100%;
+    margin: 20px;
   }
 
-  th {
-    font-weight: bold;
-    font-size: 20px
+  .shippingWrapper {
+    width: 100%;
   }
 
   .points {
@@ -58,6 +51,7 @@ const styles = css`
     padding-left: 20px;
     color: white;
     font-size: 1.5em;
+    margin-top: 20px;
   }
 `;
 

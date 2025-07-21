@@ -21,7 +21,7 @@ const styles = css`
     object-fit: cover;
   }
 
-  .rank{
+  .rank {
    font-size: 1.5em;
    text-align: right;
   }

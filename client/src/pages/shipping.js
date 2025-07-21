@@ -1,48 +1,70 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html} from 'lit';
 import styles from './styles/shipping.js';
 import '../components/mission-item.js';
+import cache from '../utils/cache.js';
+import { getMissionsForUser, updateMissionStatus } from '../utils/fetch.js';
 
-// missions as constants
-const missions = [
-  { points: 50, title: "Write message in guest book", status: "incomplete" },
-  { points: 50, title: "Take a picture using the photo booth", status: "incomplete" },
-  { points: 100, title: "Find at least X Labubus around the venue", status: "incomplete" },
-  { points: 100, title: "Join the dance class", status: "incomplete" },
-  { points: 100, title: "Win rock paper scissors competition", status: "incomplete" },
-  { points: 50, title: "Introduce yourself to someone you don't know (up to 3 people for 150 points total)", status: "incomplete" },
-  { points: 50, title: "Get a score of at least 60 on <a href='https://arithmetic.zetamac.com/'>this arithmetic game</a> with default settings", status: "incomplete" },
-  { points: 100, title: "Upload or promise to upload media of event to google drive", status: "incomplete" },
-  { points: 25, title: "Try every food that you want (with menu link)", status: "incomplete" },
-  { points: 100, title: "Win \"last one standing\" game", status: "incomplete" },
-];
 export class Shipping extends LitElement {
   static properties = {
     missions: { type: Array },
-    totalPoints: { type: Number }
+    totalPoints: { type: Number },
+    status: { type: String, state: true }
   };
 
-  static styles = [
-    styles,
-    css`
-      .total-points {
-        margin-top: 20px;
-        font-weight: bold;
-      }
-    `
-  ];
+  static get styles() {
+    return styles;
+  }
 
   constructor() {
     super();
-    this.missions = missions.map(m => ({ ...m }));
+    this.missions = [];
     this.totalPoints = this.calculatePoints();
     this.toggleMission = this.toggleMission.bind(this);
+    this.status = 'loading';
+    this.userId = null;
   }
 
-  toggleMission(index) {
-    const updated = [...this.missions];
-    updated[index].status = updated[index].status === 'complete' ? 'incomplete' : 'complete';
-    this.missions = updated;
+  async firstUpdated() {
+    this.userId = await cache.get('userId');
+    const missionList = await getMissionsForUser(this.userId);
+    console.log("userId: ", this.userId);
+    console.log("missionList: ", missionList);
+    
+    if (missionList && !missionList.apiError) {
+      this.missions = missionList.map(m => (
+        { ...m, status: m.completed ? 'complete' : 'incomplete' }
+      ));
+    } else {
+      console.error(
+        'Could not fetch user list for leaderboard',
+        missionList?.apiError
+      );
+    }
+    this.status = 'loaded';
+  }
+
+  async toggleMission(index) {
+    const missionToUpdate = this.missions[index];
+    const originalStatus = missionToUpdate.status;
+    const newStatus =  missionToUpdate.status === 'complete' ? 'incomplete' : 'complete';
+
+    // Optimistic UI update by creating a new array with a new object for the updated item
+    this.missions = this.missions.map((mission, i) =>
+      i === index ? { ...mission, status: newStatus } : mission
+    );
     this.totalPoints = this.calculatePoints();
+
+    // Persist change to backend
+    const result = await updateMissionStatus(this.userId, missionToUpdate.id, newStatus === 'complete');
+
+    if (result?.apiError) {
+      console.error("Failed to update mission status:", result.apiError);
+      // Revert UI change on failure
+      this.missions = this.missions.map((mission, i) =>
+        i === index ? { ...mission, status: originalStatus } : mission
+      );
+      this.totalPoints = this.calculatePoints();
+    }
   }
 
   calculatePoints() {
@@ -52,21 +74,25 @@ export class Shipping extends LitElement {
   }
 
   render() {
+
+    if (this.status === 'loading') {
+      return html`<div class="shippingContainer">
+        <h1>Missions</h1>
+        <app-loading></app-loading>
+      </div>`;
+    }
+
     return html`
       <div class="shippingContainer">
         <h1>Missions</h1>
         <div class="shippingWrapper">
-          <table>
-            <tbody>
-              ${this.missions.map((m, i) => html`
-                <mission-item 
-                  .mission=${m} 
-                  .index=${i} 
-                  @toggle-mission=${(e) => this.toggleMission(e.detail.index)}>
-                </mission-item>
-              `)}
-            </tbody>
-          </table>
+            ${this.missions.map((m, i) => html`
+              <mission-item 
+                .mission=${m} 
+                .index=${i} 
+                @toggle-mission=${(e) => this.toggleMission(e.detail.index)}>
+              </mission-item>
+            `)}
         </div>
       </div>
       <div class="points">

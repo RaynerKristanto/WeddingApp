@@ -15,13 +15,39 @@
 import { css } from 'lit';
 
 const styles = css`
-  tr {
-    outline: thin solid lightgray;
-    border-radius: 10px;
-    height: 75px;
-    vertical-align: middle;
-    padding-bottom: 20px;
-    font-size: 1.1em;
+  .mission-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+  }
+
+  .mission-item.complete {
+      text-decoration: line-through;
+      color: gray;
+      opacity: 0.5;
+  }
+      
+  .mission-item input[type="checkbox"] {
+      transform: scale(1.2);
+  }
+  
+  .mission-description {
+      margin-left: 10px;
+      margin-right: auto; 
+      font-size: 1.2em;
+      width: 235px;
+  }
+  
+  .mission-points { 
+      margin-right: 10px;
+      font-size: 1.2em;
   }
 `;
 

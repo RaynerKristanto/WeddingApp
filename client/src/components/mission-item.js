@@ -8,17 +8,9 @@ export class MissionItem extends LitElement {
     index: { type: Number },
   };
 
-  static styles = [
-    styles,
-    css`
-    .complete {
-      text-decoration: line-through;
-      color: gray;
-    }
-    td input[type="checkbox"] {
-      transform: scale(1.2);
-    }
-  `];
+  static get styles() {
+    return styles;
+  }
 
   constructor() {
     super();
@@ -28,9 +20,8 @@ export class MissionItem extends LitElement {
 
   render() {
     return html`
-      <tr>
-        <td style="vertical-align: middle; padding-left: 10px;">
-            <input 
+      <div class="mission-item ${this.mission.status === 'complete' ? 'complete' : ''}">
+          <input 
             type="checkbox"
             .checked=${this.mission.status === 'complete'}
             @change=${() =>
@@ -39,13 +30,10 @@ export class MissionItem extends LitElement {
                   bubbles: true,
                   composed: true
                 }))}
-            />
-        </td>
-        <td style="text-align: left; width: 250px; padding-left: 10px" class=${this.mission.status === 'complete' ? 'complete' : ''}>
-            ${unsafeHTML(this.mission.title)}
-        </td>
-        <td style="width: 50px;">${this.mission.points}</td>
-      </tr>
+          />
+          <div class="mission-description">${unsafeHTML(this.mission.description)}</div>
+          <div class="mission-points">${this.mission.points}</div>
+      </div>
     `;
   }
 }  

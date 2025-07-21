@@ -45,7 +45,7 @@ export class Contact extends LitElement {
     const userList = await getUserList();
     let userId = cache.get('userId');
     console.log("userId: ", userId);
-    // Assuming getUserList returns an array of users with name and points
+    
     if (userList && !userList.apiError) {
       this.users = userList.map(u => ({ ...u, status: 'incomplete' }));
       this.users.sort((a, b) => (b.points || 0) - (a.points || 0));
@@ -69,6 +69,8 @@ export class Contact extends LitElement {
   }
 
   render() {
+    let userId = cache.get('userId');
+    console.log("userId: ", userId);
     if (this.status === 'loading') {
       return html`<div class="contactContainer">
         <h1>Leaderboard</h1>

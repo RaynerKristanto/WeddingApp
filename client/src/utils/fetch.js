@@ -133,16 +133,22 @@ export const updateMissionStatus = async (userId, missionId, completed) => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData = await response.json().catch(() => response.text());
       console.error('Failed to update mission status:', errorData);
-      return { error: errorData };
+      return {
+        apiError: {
+          message: 'Failed to update mission status',
+          error: errorData,
+        },
+      };
     }
     return await response.json();
   } catch (error) {
     console.error('Error updating mission status:', error);
-    return { error };
+    return { apiError: { message: 'Error updating mission status', error: error.toString() } };
   }
 };
+
 export const buyProduct = async (productId, callback) => {
   let uri = `products/${productId}/purchase/`;
   const { API_URL } = getConfig();

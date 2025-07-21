@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { LitElement, html } from 'lit';
+import { navigator } from '../vendor/lit-element-router-2.0.3a/lit-element-router.js';
 import "../components/leaderboard-item.js"
 import styles from './styles/contact.js';
 import cache from '../utils/cache.js';
@@ -21,7 +22,7 @@ import { getUserList } from '../utils/fetch.js';
 
 const noimage = new URL('../../assets/noimage.png', import.meta.url).href;
 
-export class Contact extends LitElement {
+export class Contact extends navigator(LitElement) {
   static get properties() {
     return {
       selectedUser: { type: Object, state: true },
@@ -41,15 +42,47 @@ export class Contact extends LitElement {
     this.status = 'loading';
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.handleRouteChange = this.handleRouteChange.bind(this);
+    window.addEventListener('route', this.handleRouteChange);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('route', this.handleRouteChange);
+    super.disconnectedCallback();
+  }
+
+  async handleRouteChange() {
+    // Re-fetch data if we are navigating to the contact page.
+    if (window.location.pathname === '/contact') {
+      await this.loadData();
+    }
+  }
+
   async firstUpdated() {
-    const userList = await getUserList();
-    let userId = cache.get('userId');
-    console.log("userId: ", userId);
-    
+    await this.loadData();
+  }
+
+  async loadData() {
+    this.status = 'loading';
+    this.requestUpdate();
+
+    let userList = await getUserList();
+
     if (userList && !userList.apiError) {
+      const newUser = await cache.get('newUser');
+      // If a new user was just created and isn't in the list from the API
+      // (due to replication lag), add them to the list manually.
+      if (newUser && !userList.find(u => u.id === newUser.id)) {
+        userList.push(newUser);
+        // This is a one-time operation, so remove it from cache.
+        await cache.del('newUser');
+      }
+
       this.users = userList.map(u => ({ ...u, status: 'incomplete' }));
       this.users.sort((a, b) => (b.points || 0) - (a.points || 0));
-      this.selectedUser = this.users[0] || null;
+      await this._updateSelectedUserFromURL();
     } else {
       console.error(
         'Could not fetch user list for leaderboard',
@@ -57,20 +90,37 @@ export class Contact extends LitElement {
       );
     }
     this.status = 'loaded';
+    this.requestUpdate();
   }
 
-  _selectUser(user) {
-    this.selectedUser = user;
+  async _updateSelectedUserFromURL() {
+    if (this.users.length === 0) {
+      this.selectedUser = null;
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    let userId = params.get('userId');
+
+    if (userId) {
+      this.selectedUser = this.users.find(u => u.id === parseInt(userId, 10)) || null;
+    } else {
+      const cachedUserId = await cache.get('userId');
+      if (cachedUserId) {
+        this.selectedUser = this.users.find(u => u.id === cachedUserId) || null;
+      } else {
+        // If no user is signed in, selectedUser will be null.
+        this.selectedUser = null;
+      }
+    }
   }
 
   get selectedUserRank() {
     if (!this.selectedUser) return null;
-    return this.users.findIndex(u => u === this.selectedUser) + 1;
+    return this.users.findIndex(u => u.id === this.selectedUser.id) + 1;
   }
 
   render() {
-    let userId = cache.get('userId');
-    console.log("userId: ", userId);
     if (this.status === 'loading') {
       return html`<div class="contactContainer">
         <h1>Leaderboard</h1>
@@ -97,7 +147,7 @@ export class Contact extends LitElement {
                 ${this.selectedUser.points} Points
               </div>
             `
-          : html`<p>Select a player to see their stats.</p>`}
+          : html`<p>Sign in to see your stats.</p>`}
         </div>
         <div class="contactWrapper">
           ${this.users.map((user, index) => html`
@@ -106,8 +156,6 @@ export class Contact extends LitElement {
               .imageSrc=${user.image || noimage}
               .name=${`${user.first_name} ${user.last_name}`}
               .points=${user.points}
-              @click=${() => this._selectUser(user)}
-              style="cursor: pointer;"
             ></leaderboard-item>
           `)}
         </div>

@@ -86,7 +86,7 @@ class MissionViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["get"])
     def getMissionsForUsers(self, request):
         """
-        Returns a list of missions for a given user, including their completion status.
+        Returns a list of all missions, including their completion status for a given user.
         Requires a `user_id` query parameter.
         e.g. /api/missions/getMissionsForUsers/?user_id=1
         """
@@ -97,15 +97,32 @@ class MissionViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        if not User.objects.filter(pk=user_id).exists():
+        try:
+            user = User.objects.get(pk=user_id)
+        except User.DoesNotExist:
             return Response(
                 {"error": f"User with id {user_id} not found."},
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        mission_statuses = MissionStatus.objects.filter(user_id=user_id).select_related("mission_id")
-        serializer = UserMissionStatusSerializer(mission_statuses, many=True)
-        return Response(serializer.data)
+        all_missions = Mission.objects.all()
+        completed_mission_ids = set(
+            MissionStatus.objects.filter(user_id=user, completed=True).values_list(
+                "mission_id", flat=True
+            )
+        )
+
+        response_data = [
+            {
+                "mission_id": mission.id,
+                "description": mission.description,
+                "points": mission.points,
+                "completed": mission.id in completed_mission_ids,
+            }
+            for mission in all_missions
+        ]
+
+        return Response(response_data)
 
     @action(detail=False, methods=["post"], url_path="update-status")
     def update_status(self, request):

@@ -55,7 +55,7 @@ export class Shipping extends LitElement {
     this.totalPoints = this.calculatePoints();
 
     // Persist change to backend
-    const result = await updateMissionStatus(this.userId, missionToUpdate.id, newStatus === 'complete');
+    const result = await updateMissionStatus(this.userId, missionToUpdate.mission_id, newStatus === 'complete');
 
     if (result?.apiError) {
       console.error("Failed to update mission status:", result.apiError);

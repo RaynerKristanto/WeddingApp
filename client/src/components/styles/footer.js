@@ -21,7 +21,7 @@ const styles = css`
     justify-content: center;
     flex-direction: column;
     font-size: 10px;
-    padding: 30px 0;
+    padding-top: 30px;
   }
 
   .footerWrapper > a {

@@ -5,14 +5,14 @@ const styles = css`
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         font-family: var(--base-font);
         font-size: 1em;
+        flex-grow: 1;
     }
 
     h1 {
         color: var(--color-secondary);
-        font-size: 2.5em;
+        font-size: 2.2em;
     }
 
     .name {

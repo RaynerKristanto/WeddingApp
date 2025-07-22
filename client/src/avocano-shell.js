@@ -31,6 +31,7 @@ import './pages/shipping.js';
 import './pages/not-found.js';
 import './pages/error.js';
 import './pages/seating-chart.js';
+import './pages/scavenger-hunt.js';
 
 // Components
 import './components/checkout-form.js';
@@ -177,14 +178,9 @@ export class AvocanoShell extends router(LitElement) {
             <div class="route" route="contact">
               <app-contact></app-contact>
             </div>
-            ${AVOCANO_PURCHASE_MODE === 'cart'
-              ? html`<div class="route" route="checkout">
-                  <app-checkout
-                    .cart=${this.state.cart}
-                    .updateParent=${this.childUpdateRequest}
-                  ></app-checkout>
-                </div>`
-              : ''}
+            <div class="route" route="scavenger-hunt">
+              <app-scavenger-hunt></app-scavenger-hunt>
+            </div>
             <div class="route" route="not-found">
               <app-not-found></app-not-found>
             </div>

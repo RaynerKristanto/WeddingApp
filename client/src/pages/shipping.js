@@ -3,6 +3,8 @@ import styles from './styles/shipping.js';
 import '../components/mission-item.js';
 import cache from '../utils/cache.js';
 import { getMissionsForUser, updateMissionStatus } from '../utils/fetch.js';
+import { getUserList } from '../utils/fetch.js';
+
 
 export class Shipping extends LitElement {
   static properties = {
@@ -22,11 +24,14 @@ export class Shipping extends LitElement {
     this.toggleMission = this.toggleMission.bind(this);
     this.status = 'loading';
     this.userId = null;
+    this.user = null;
   }
 
   async firstUpdated() {
     this.userId = await cache.get('userId');
     const missionList = await getMissionsForUser(this.userId);
+    let userList = await getUserList();
+    this.user = userList.find(u => u.id === this.userId); // set current user
     console.log("userId: ", this.userId);
     console.log("missionList: ", missionList);
     
@@ -52,7 +57,10 @@ export class Shipping extends LitElement {
     this.missions = this.missions.map((mission, i) =>
       i === index ? { ...mission, status: newStatus } : mission
     );
-    this.totalPoints = this.calculatePoints();
+  
+    this.user.points = this.calculatePoints();
+    console.log("user: ", this.user);
+
 
     // Persist change to backend
     const result = await updateMissionStatus(this.userId, missionToUpdate.mission_id, newStatus === 'complete');
@@ -63,7 +71,7 @@ export class Shipping extends LitElement {
       this.missions = this.missions.map((mission, i) =>
         i === index ? { ...mission, status: originalStatus } : mission
       );
-      this.totalPoints = this.calculatePoints();
+      this.user.points = this.calculatePoints();
     }
   }
 
@@ -96,7 +104,7 @@ export class Shipping extends LitElement {
         </div>
       </div>
       <div class="points">
-        <div class="total-points">Total Points: ${this.totalPoints}</div>
+        <div class="total-points">Total Points: ${this.user.points}</div>
       </div>
     `;
   }

@@ -46,6 +46,7 @@ export class Home extends LitElement {
       <div class="homeBase">
         <div class="titleContainer">
           <img class="bg" src=${bg} alt="Bg"/>
+          <h3><a href="/sign-in">SIGN IN</a> TO</h3>
           <h1>SHERRY & RAYNER'S</h1>
           <h2>W E D D I N G</h2>
           <img class="sherray" src=${sherray} alt="Sherray"/>

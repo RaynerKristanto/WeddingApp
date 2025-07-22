@@ -14,10 +14,10 @@
 
 import { LitElement, html } from 'lit';
 import { navigator } from '../vendor/lit-element-router-2.0.3a/lit-element-router.js';
-import { getProductList } from '../utils/fetch.js';
 import styles from './styles/product.js';
 
-export class ProductList extends navigator(LitElement) {
+
+export class ScavengerHunt extends navigator(LitElement) {
   static get styles() {
     return styles;
   }
@@ -49,10 +49,10 @@ export class ProductList extends navigator(LitElement) {
   render() {
     return html`
       <div class="productContainer">
-        <h1 class="productTitle">Menu</h1>
+        <h1>Scavenger Hunt</h1>
         <div class="productWrapper">
           <div class="courseContainer">
-            <h2>Tray-Passed Appetizers</h2>
+            <div class="course">Tray-Passed Appetizers</div>
                 <ul>
                   <li> Shiso Honey Prawns</li>
                   <li class="desc">Served with spiced mango sauce<li>
@@ -60,7 +60,7 @@ export class ProductList extends navigator(LitElement) {
                   <li class="desc">Served with grilled peach poblano chutney (GF)<li>
           </div>
           <div class="courseContainer">
-            <h2>Salad and Bread Service</h2>
+            <div class="course">Salad and Bread Service</div>
                 <ul>
                   <li>Salad</li>
                   <li class="desc">Served with (V)<li>
@@ -69,7 +69,7 @@ export class ProductList extends navigator(LitElement) {
                   or roasted garlic butter<li>
           </div>
           <div class="courseContainer">
-            <h2>Entrees</h2>
+            <div class="course">Entrees</div>
                 <ul>
                   <li>Herb-Crusted Sirloin</li>
                   <li class="desc">Served with wild mushroom demi glaze (GF)<li>
@@ -77,7 +77,7 @@ export class ProductList extends navigator(LitElement) {
                   <li class="desc">Served with honey lemon coriander sauce (GF)<li>
           </div>
           <div class="courseContainer">
-            <h2>Sides</h2>
+            <div class="course">Sides</div>
                 <ul>
                   <li>Cilantro Lime Rice</li>
                   <li class="desc">Jasmine rice, cilantro, lime (V, GF)<li>
@@ -85,7 +85,7 @@ export class ProductList extends navigator(LitElement) {
                   <li class="desc">PNW wild mushrooms, onions, garlic butter (Veg, GF)<li>
           </div>
           <div class="courseContainer">
-            <h2>Taco Bar</h2>
+            <div class="course">Taco Bar</div>
                 <ul>
                   <li>Carne Asada</li>
                   <li class="desc">Grilled steak<li>
@@ -95,7 +95,7 @@ export class ProductList extends navigator(LitElement) {
                   <li class="desc">Veggies (V)<li>
           </div>
           <div class="courseContainer">
-            <h2>Dessert</h2>
+            <div class="course">Dessert</div>
                 <ul>
                   <li>Cake</li>
                   <li class="desc">Oreo, cheese mango, matcha yuzu<li>
@@ -106,4 +106,4 @@ export class ProductList extends navigator(LitElement) {
   }
 }
 
-customElements.define('app-product-list', ProductList);
+customElements.define('app-scavenger-hunt', ScavengerHunt);

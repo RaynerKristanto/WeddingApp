@@ -15,9 +15,9 @@
 import { css } from 'lit';
 
 const styles = css`
-  h1.productTitle {
+  h1 {
     color: var(--color-secondary);
-    font-size: 2.5em;
+    font-size: 2.2em;
   }
 
   .productContainer {
@@ -47,8 +47,9 @@ const styles = css`
     margin-bottom: 20px;
   }
   
-  .course {
-    font-size: 1.2em;
+  h2 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
   }
 
   ul {

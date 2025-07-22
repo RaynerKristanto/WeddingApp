@@ -40,7 +40,6 @@ const styles = css`
     font-size: 1.4em;
     margin-left: 10px;
     margin-right: auto;
-    width: 120px;
     color: white;
   }
 
@@ -63,8 +62,8 @@ const styles = css`
   .user-points {
     font-size: 1.4em;
     margin-right: 10px;
-    margin-left: auto;
-    width: 115px; 
+    margin-left: 0px;
+    width: 110px; 
     text-align: right; 
     color: white;
   }

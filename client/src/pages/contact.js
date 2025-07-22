@@ -20,7 +20,12 @@ import cache from '../utils/cache.js';
 import { getUserList } from '../utils/fetch.js';
 
 
-const noimage = new URL('../../assets/noimage.png', import.meta.url).href;
+// random images
+const images = [
+    new URL('../../assets/noimage.png', import.meta.url).href,
+    new URL('../sherray.webp', import.meta.url).href,
+    new URL('../srblack.png', import.meta.url).href,
+];
 
 export class Contact extends navigator(LitElement) {
   static get properties() {
@@ -80,7 +85,11 @@ export class Contact extends navigator(LitElement) {
         await cache.del('newUser');
       }
 
-      this.users = userList.map(u => ({ ...u, status: 'incomplete' }));
+      this.users = userList.map(u => ({
+        ...u,
+        status: 'incomplete',
+        image: images[u.id % images.length] // randomly generated images
+      }));
       this.users.sort((a, b) => (b.points || 0) - (a.points || 0));
       await this._updateSelectedUserFromURL();
     } else {

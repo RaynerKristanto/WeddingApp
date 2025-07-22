@@ -111,12 +111,18 @@ class MissionViewSet(viewsets.ModelViewSet):
                 "mission_id", flat=True
             )
         )
+        unlocked_mission_ids = set(
+            MissionStatus.objects.filter(user_id=user, hidden=False).values_list(
+                "mission_id", flat=True
+            )
+        )
 
         response_data = [
             {
                 "mission_id": mission.id,
                 "description": mission.description,
                 "points": mission.points,
+                "unlocked": mission.hidden or mission.id in unlocked_mission_ids,
                 "completed": mission.id in completed_mission_ids,
             }
             for mission in all_missions

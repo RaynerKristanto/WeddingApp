@@ -53,16 +53,30 @@ const styles = css`
     font-family: var(--site-name-font);
     font-size: 35px;
     font-style: italic;
+    margin-top: 0;
     margin-bottom: 0;
     font-weight: normal;
     color: var(--site-name-color);
   }
+
   h2 {
     font-family: var(--base-font);
     font-size: 25px;
     color: var(--site-name-color);
     margin-top: 0px;
   }
+
+  h3 {
+    font-family: var(--base-font);
+    font-size: 20px;
+    color: var(--site-name-color);
+    margin-bottom: 5px;
+  }
+  
+  h3 a{
+    color: var(--site-name-color);
+  }
+
   .sherray {
     width: 80%;
     border-radius: 50%;

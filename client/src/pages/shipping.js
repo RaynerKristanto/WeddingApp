@@ -59,6 +59,8 @@ export class Shipping extends LitElement {
     );
   
     this.user.points = this.calculatePoints();
+    console.log("user: ", this.user);
+
 
     // Persist change to backend
     const result = await updateMissionStatus(this.userId, missionToUpdate.mission_id, newStatus === 'complete');

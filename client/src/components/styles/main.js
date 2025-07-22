@@ -21,6 +21,7 @@ const styles = css`
     align-items: center;
     width: 100%;
     max-width: 1080px;
+    flex-grow: 1;
   }
 `;
 

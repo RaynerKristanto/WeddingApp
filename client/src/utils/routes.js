@@ -42,6 +42,10 @@ const routes = [
     pattern: 'contact',
   },
   {
+    name: 'scavenger-hunt',
+    pattern: 'scavenger-hunt',
+  },
+  {
     name: 'checkout',
     pattern: 'checkout',
   },

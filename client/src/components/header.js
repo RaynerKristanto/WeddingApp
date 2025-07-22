@@ -81,6 +81,7 @@ export class Header extends LitElement {
             <app-link href="/seating-chart">Seating Chart</app-link>
             <app-link href="/shipping">Missions</app-link>
             <app-link href="/contact">Leaderboard</app-link>
+            <app-link href="/scavenger-hunt">Scavenger Hunt</app-link>
             <app-link href="/sign-in">Sign In</app-link>
           </div>
         </div>

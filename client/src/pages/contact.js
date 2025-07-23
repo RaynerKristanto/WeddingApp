@@ -16,15 +16,51 @@ import { LitElement, html } from 'lit';
 import { navigator } from '../vendor/lit-element-router-2.0.3a/lit-element-router.js';
 import "../components/leaderboard-item.js"
 import styles from './styles/contact.js';
-import cache from '../utils/cache.js';
 import { getUserList } from '../utils/fetch.js';
 
 
 // random images
 const images = [
-    new URL('../../assets/noimage.png', import.meta.url).href,
-    new URL('../sherray.webp', import.meta.url).href,
-    new URL('../srblack.png', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age1.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age2.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age3.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age4.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age5.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age6.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age7.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age8.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age9.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age10.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age11.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age12.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age13.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age14.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age15.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age16.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age17.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age18.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age19.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age20.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age1.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age2.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age3.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age4.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age5.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age6.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age7.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age8.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age9.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age10.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age11.jpg', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age12.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age13.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age14.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age15.jpg', import.meta.url).href, 
+    new URL('../../assets/WeddingPhotos/Sherry/Age16.jpg', import.meta.url).href, 
+    new URL('../../assets/WeddingPhotos/Sherry/Age17.JPG', import.meta.url).href, 
+    new URL('../../assets/WeddingPhotos/Sherry/Age18.JPG', import.meta.url).href, 
+    new URL('../../assets/WeddingPhotos/Sherry/Age19.JPG', import.meta.url).href, 
+    new URL('../../assets/WeddingPhotos/Sherry/Age20.JPG', import.meta.url).href, 
 ];
 
 export class Contact extends navigator(LitElement) {
@@ -74,16 +110,8 @@ export class Contact extends navigator(LitElement) {
     this.requestUpdate();
 
     let userList = await getUserList();
-
+     
     if (userList && !userList.apiError) {
-      const newUser = await cache.get('newUser');
-      // If a new user was just created and isn't in the list from the API
-      // (due to replication lag), add them to the list manually.
-      if (newUser && !userList.find(u => u.id === newUser.id)) {
-        userList.push(newUser);
-        // This is a one-time operation, so remove it from cache.
-        await cache.del('newUser');
-      }
 
       this.users = userList.map(u => ({
         ...u,
@@ -113,14 +141,6 @@ export class Contact extends navigator(LitElement) {
 
     if (userId) {
       this.selectedUser = this.users.find(u => u.id === parseInt(userId, 10)) || null;
-    } else {
-      const cachedUserId = await cache.get('userId');
-      if (cachedUserId) {
-        this.selectedUser = this.users.find(u => u.id === cachedUserId) || null;
-      } else {
-        // If no user is signed in, selectedUser will be null.
-        this.selectedUser = null;
-      }
     }
   }
 

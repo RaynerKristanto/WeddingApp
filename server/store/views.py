@@ -122,7 +122,7 @@ class MissionViewSet(viewsets.ModelViewSet):
                 "mission_id": mission.id,
                 "description": mission.description,
                 "points": mission.points,
-                "unlocked": mission.hidden or mission.id in unlocked_mission_ids,
+                "hidden": mission.hidden and mission.id not in unlocked_mission_ids,
                 "completed": mission.id in completed_mission_ids,
             }
             for mission in all_missions

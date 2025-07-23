@@ -17,9 +17,8 @@ import cache from '../utils/cache.js';
 import styles from './styles/home.js';
 import '../components/product-item.js';
 
-const sherray = new URL('../sherray.webp', import.meta.url).href;
-//const bg = new URL('../watercolor.png', import.meta.url).href;
-const bg = new URL('../wc.png', import.meta.url).href;;
+const sherray = new URL('../../assets/sherray.webp', import.meta.url).href;
+const bg = new URL('../../assets/wc.png', import.meta.url).href;;
 
 export class Home extends LitElement {
 

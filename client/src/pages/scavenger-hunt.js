@@ -34,11 +34,8 @@ export class ScavengerHunt extends navigator(LitElement) {
   async firstUpdated(changed) {
     super.firstUpdated(changed);
 
-    let products = await getProductList();
-
     this.state = {
       status: 'loaded',
-      products,
     };
 
     if (this.state.status === 'loaded') {

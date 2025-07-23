@@ -16,7 +16,7 @@ import { LitElement, html } from 'lit';
 import styles from './styles/header.js';
 import './link.js';
 
-const sr = new URL('../srblack.png', import.meta.url).href;
+const sr = new URL('../../assets/srblack.png', import.meta.url).href;
 const flower = 'https://media-api.xogrp.com/images/3f0b385e-b7b2-4840-8a59-38ca55bca221~rt_auto-rs_960.h?ordering=explicit';
 
 export class Header extends LitElement {

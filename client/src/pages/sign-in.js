@@ -78,7 +78,6 @@ export class SignIn extends navigator(LitElement) {
     if (user && !user.apiError) {
       // Store the returned user ID in the cache
       await cache.set('userId', user.id);
-      await cache.set('newUser', user);
       // Navigate to the leaderboard page
       this.navigate(`/contact?userId=${user.id}`);
     } else {

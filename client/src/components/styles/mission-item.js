@@ -27,16 +27,45 @@ const styles = css`
       margin-bottom: 10px;
       box-sizing: border-box;
   }
+    .missionWrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+    }
 
   .mission-item.complete {
       text-decoration: line-through;
       color: gray;
       opacity: 0.5;
   }
-      
+
+  .mission-item.hidden .missionWrapper {
+      opacity: 0.5;
+  }
+
   .mission-item input[type="checkbox"] {
       transform: scale(1.2);
   }
+    .mission-item .lock {
+    display: none;
+  }
+
+  .mission-item.hidden .lock {
+    display: inline-block;
+    opacity: 1;
+  }
+
+  .mission-item.hidden input[type="checkbox"] {
+    display: none;
+  }
+
+  .lock img{
+    height: 25px;
+    width: 25px; 
+    z-index: 10px;
+    }
   
   .mission-description {
       margin-left: 10px;

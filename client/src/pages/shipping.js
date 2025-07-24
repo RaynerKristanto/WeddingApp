@@ -27,25 +27,25 @@ export class Shipping extends LitElement {
     this.user = null;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.handleRouteChange = this.handleRouteChange.bind(this);
+    window.addEventListener('route', this.handleRouteChange);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('route', this.handleRouteChange);
+    super.disconnectedCallback();
+  }
+
   async firstUpdated() {
-    this.userId = await cache.get('userId');
-    const missionList = await getMissionsForUser(this.userId);
-    let userList = await getUserList();
-    this.user = userList.find(u => u.id === this.userId); // set current user
-    console.log("userId: ", this.userId);
-    console.log("missionList: ", missionList);
-    
-    if (missionList && !missionList.apiError) {
-      this.missions = missionList.map(m => (
-        { ...m, status: m.completed ? 'complete' : 'incomplete' }
-      ));
-    } else {
-      console.error(
-        'Could not fetch user list for leaderboard',
-        missionList?.apiError
-      );
+    await this.loadData();
+  }
+
+  async handleRouteChange() {
+    if (window.location.pathname === '/shipping') {
+      await this.loadData();
     }
-    this.status = 'loaded';
   }
 
   async toggleMission(index) {
@@ -57,10 +57,9 @@ export class Shipping extends LitElement {
     this.missions = this.missions.map((mission, i) =>
       i === index ? { ...mission, status: newStatus } : mission
     );
-  
+
     this.user.points = this.calculatePoints();
     console.log("user: ", this.user);
-
 
     // Persist change to backend
     const result = await updateMissionStatus(this.userId, missionToUpdate.mission_id, newStatus === 'complete');
@@ -73,6 +72,42 @@ export class Shipping extends LitElement {
       );
       this.user.points = this.calculatePoints();
     }
+    this.requestUpdate();
+    // await this.loadData();
+  }
+
+  async loadData() {
+    this.status = 'loading';
+    this.requestUpdate();
+
+    const params = new URLSearchParams(window.location.search);
+    let userId = params.get('userId');
+    
+   if (userId) {
+      console.log("if");
+      this.userId = parseInt(userId, 10);
+    } else {
+      console.log("else");
+      this.userId = await cache.get('userId')
+    }
+
+    let missionList = await getMissionsForUser(this.userId);
+    let userList = await getUserList(); 
+    if (missionList && !missionList.apiError) {
+      this.missions = missionList.map(m => (
+        { ...m, status: m.completed ? 'complete' : 'incomplete' }));
+    } else {
+      console.error(
+        'Could not fetch user list for leaderboard',
+        missionList?.apiError
+      );
+    }
+    this.user = userList.find(u => u.id === this.userId);
+    console.log("user: ", this.user);
+    this.user.points = this.calculatePoints();
+
+    this.status = 'loaded';
+    this.requestUpdate();
   }
 
   calculatePoints() {

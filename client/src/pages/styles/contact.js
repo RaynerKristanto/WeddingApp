@@ -32,8 +32,13 @@ const styles = css`
     justify-content: flex-start;
     border-radius: 10px;
     position: sticky;
-    top: 10px;
+    top: 15px;
     z-index: 1;
+  }
+  
+  p {
+    color: white;
+    font-size: 1.4em;
   }
 
   .user-name {

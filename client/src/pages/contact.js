@@ -17,6 +17,7 @@ import { navigator } from '../vendor/lit-element-router-2.0.3a/lit-element-route
 import "../components/leaderboard-item.js"
 import styles from './styles/contact.js';
 import { getUserList } from '../utils/fetch.js';
+import cache from '../utils/cache.js';
 
 
 // random images
@@ -39,7 +40,7 @@ const images = [
     new URL('../../assets/WeddingPhotos/Rayner/Age16.JPG', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Rayner/Age17.JPG', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Rayner/Age18.JPG', import.meta.url).href,
-    new URL('../../assets/WeddingPhotos/Rayner/Age19.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Rayner/Age19.jpg', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Rayner/Age20.JPG', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Sherry/Age1.jpg', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Sherry/Age2.jpg', import.meta.url).href,
@@ -53,7 +54,7 @@ const images = [
     new URL('../../assets/WeddingPhotos/Sherry/Age10.jpg', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Sherry/Age11.jpg', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Sherry/Age12.JPG', import.meta.url).href,
-    new URL('../../assets/WeddingPhotos/Sherry/Age13.JPG', import.meta.url).href,
+    new URL('../../assets/WeddingPhotos/Sherry/Age13.jpg', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Sherry/Age14.JPG', import.meta.url).href,
     new URL('../../assets/WeddingPhotos/Sherry/Age15.jpg', import.meta.url).href, 
     new URL('../../assets/WeddingPhotos/Sherry/Age16.jpg', import.meta.url).href, 
@@ -80,6 +81,7 @@ export class Contact extends navigator(LitElement) {
     this.title = 'Leaderboard';
     this.users = [];
     this.selectedUser = null;
+    this.userId = null; 
     this.status = 'loading';
   }
 
@@ -110,7 +112,7 @@ export class Contact extends navigator(LitElement) {
     this.requestUpdate();
 
     let userList = await getUserList();
-     
+
     if (userList && !userList.apiError) {
 
       this.users = userList.map(u => ({
@@ -120,7 +122,7 @@ export class Contact extends navigator(LitElement) {
       }));
       this.users.sort((a, b) => (b.points || 0) - (a.points || 0));
       await this._updateSelectedUserFromURL();
-    } else {
+     } else {
       console.error(
         'Could not fetch user list for leaderboard',
         userList?.apiError
@@ -131,17 +133,26 @@ export class Contact extends navigator(LitElement) {
   }
 
   async _updateSelectedUserFromURL() {
-    if (this.users.length === 0) {
-      this.selectedUser = null;
-      return;
-    }
 
-    const params = new URLSearchParams(window.location.search);
-    let userId = params.get('userId');
+   if (this.users.length === 0) {
+    console.log("Users is empty, can't update selected user from URL yet.");
+    this.selectedUser = null;
+    return; // Exit early if users are not loaded
+  }
 
-    if (userId) {
-      this.selectedUser = this.users.find(u => u.id === parseInt(userId, 10)) || null;
-    }
+  const params = new URLSearchParams(window.location.search);
+  let userId = params.get('userId');
+
+  if (userId) {
+    console.log("if");
+    this.userId = parseInt(userId, 10);
+  } else {
+    console.log("else");
+    this.userId = await cache.get('userId')
+  }
+    this.selectedUser = this.users.find(u => u.id === this.userId) || null;
+    console.log("selectedUser: ", this.selectedUser);
+    console.log("userId: ", this.userId);
   }
 
   get selectedUserRank() {

@@ -231,6 +231,13 @@ const styles = css`
     display: block;
     margin: 0.5em 0;
     font-size: 20px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  app-link.active {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
   }
 
   .linksContainer {

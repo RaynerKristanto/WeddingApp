@@ -73,8 +73,16 @@ const styles = css`
     margin-bottom: 5px;
   }
   
-  h3 a{
+  h3 a {
     color: var(--site-name-color);
+    text-decoration-thickness: 1px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  h3 a:hover{
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
   }
 
   .sherray {

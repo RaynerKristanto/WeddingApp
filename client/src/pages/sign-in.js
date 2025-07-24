@@ -63,7 +63,7 @@ export class SignIn extends navigator(LitElement) {
           <input type="text" name="last_name" placeholder:"Last Name" required>
         </div>
         <mwc-button
-          label="Sign Up"
+          label="Sign In"
           class="dialogButton"
           slot="primaryAction"
           @click="${this.createUserHelper}"

@@ -15,6 +15,7 @@
 import { css } from 'lit';
 
 const styles = css`
+
   .loadingContainer {
     display: flex;
     align-items: center;
@@ -25,7 +26,7 @@ const styles = css`
 
   .loadingTitle {
     padding: 10px;
-    font-family: var(--base-font) !important;
+    font-family: var(--base-font);
   }
 
   .spinner {

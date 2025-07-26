@@ -53,6 +53,7 @@ const styles = css`
     height: 70px;
     border-radius: 50%;
     object-fit: cover;
+    flex-shrink: 0;
   }
 
   .user-rank {
@@ -66,7 +67,7 @@ const styles = css`
 
   .user-points {
     font-size: 1.4em;
-    margin-right: 10px;
+    margin-right: 5px;
     margin-left: 0px;
     width: 110px; 
     text-align: right; 

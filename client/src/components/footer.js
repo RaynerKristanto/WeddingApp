@@ -18,7 +18,8 @@ import { getConfig } from '../utils/config.js';
 import './link.js';
 
 const sr = new URL('../../assets/srblack.png', import.meta.url).href;
-const flower = 'https://media-api.xogrp.com/images/85d619c9-01cc-4a2f-b0e1-13efd7f21f28~rt_auto-rs_960.h?ordering=explicit';
+//const flower = 'https://media-api.xogrp.com/images/85d619c9-01cc-4a2f-b0e1-13efd7f21f28~rt_auto-rs_960.h?ordering=explicit';
+const flower = 'https://media-api.xogrp.com/images/b06a330a-5234-42df-b019-a721e96349d3~rt_auto-rs_768.h?ordering=explicit';
 
 export class Footer extends LitElement {
   static get styles() {

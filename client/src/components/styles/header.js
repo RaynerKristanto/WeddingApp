@@ -32,6 +32,9 @@ const styles = css`
   .flower {
     width: 122%;
     margin-bottom: -130px;
+    transform: scaleX(-1);
+    margin-top: -15px;
+    z-index: -1;
   }
 
   .sr {

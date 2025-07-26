@@ -18,6 +18,7 @@ import './link.js';
 
 const sr = new URL('../../assets/srblack.png', import.meta.url).href;
 const flower = 'https://media-api.xogrp.com/images/3f0b385e-b7b2-4840-8a59-38ca55bca221~rt_auto-rs_960.h?ordering=explicit';
+const wisteria = 'https://media-api.xogrp.com/images/c8ec293b-ed14-4e3d-b6a6-8ca57d09ee5d~rt_auto-rs_768.h?ordering=explicit';
 
 export class Header extends LitElement {
   static get properties() {
@@ -56,7 +57,7 @@ export class Header extends LitElement {
 // changed shipping to Missions
     return html`
       <div class="header">
-        <img class="flower" src=${flower} alt="Flower"/>
+        <img class="flower" src=${wisteria} alt="Flower"/>
         <a href="/">
           <img class="sr" src=${sr} alt="Sr"/>
         </a>
@@ -81,7 +82,7 @@ export class Header extends LitElement {
             <app-link href="/seating-chart" class="${window.location.pathname === '/seating-chart' ? 'active' : ''}">Seating Chart</app-link>
             <app-link href="/shipping" class="${window.location.pathname === '/shipping' ? 'active' : ''}">Missions</app-link>
             <app-link href="/contact" class="${window.location.pathname === '/contact' ? 'active' : ''}">Leaderboard</app-link>
-            <app-link href="/scavenger-hunt" class="${window.location.pathname === '/scavenger-hunt' ? 'active' : ''}">Scavenger Hunt</app-link>
+            
           </div>
          </div>
       </div>

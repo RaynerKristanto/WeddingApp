@@ -31,6 +31,7 @@ export class Home extends LitElement {
     };
   }
 
+
   static get styles() {
     return styles;
   }

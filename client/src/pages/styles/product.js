@@ -56,12 +56,20 @@ const styles = css`
     list-style: none;
     padding: 0;
     margin-top: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
   }
   
   .desc {
     font-size: .7em;
     font-style: italic;
     padding-bottom: 5px;
+    width: 70%;
+  }
+
+  h3 {
+    margin-bottom: 5px;
   }
 `;
 

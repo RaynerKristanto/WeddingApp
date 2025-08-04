@@ -61,6 +61,10 @@ const styles = css`
 
   h2 {
     font-family: var(--base-font);
+  }
+
+  h2 {
+    font-family: var(--base-font);
     font-size: 25px;
     color: var(--site-name-color);
     margin-top: 0px;

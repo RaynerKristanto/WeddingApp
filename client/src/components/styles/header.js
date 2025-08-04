@@ -236,7 +236,13 @@ const styles = css`
     font-size: 20px;
     -webkit-tap-highlight-color: transparent;
   }
-  
+
+  app-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+  }
+
   app-link.active {
     text-decoration: underline;
     text-decoration-thickness: 1px;

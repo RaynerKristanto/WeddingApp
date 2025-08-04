@@ -78,11 +78,12 @@ export class Header extends LitElement {
           @click=${this.closeMenuOnClick}
           class="${this.menuOpen ? 'show' : ''}">
           <div class="linksContainer">
+            <app-link href="/" class="${window.location.pathname === '/' ? 'active' : ''}">Home</app-link>
             <app-link href="/products" class="${window.location.pathname === '/products' ? 'active' : ''}">Menu</app-link>
             <app-link href="/seating-chart" class="${window.location.pathname === '/seating-chart' ? 'active' : ''}">Seating Chart</app-link>
             <app-link href="/shipping" class="${window.location.pathname === '/shipping' ? 'active' : ''}">Missions</app-link>
             <app-link href="/contact" class="${window.location.pathname === '/contact' ? 'active' : ''}">Leaderboard</app-link>
-            
+            <app-link href="/scavenger-hunt" class="${window.location.pathname === '/scavenger-hunt' ? 'active' : ''}">Scavenger Hunt</app-link>
           </div>
          </div>
       </div>

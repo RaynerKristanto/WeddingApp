@@ -181,6 +181,9 @@ export class AvocanoShell extends router(LitElement) {
             <div class="route" route="scavenger-hunt">
               <app-scavenger-hunt></app-scavenger-hunt>
             </div>
+            <div class="route" route="checkout">
+              <app-checkout .cart=${this.state.cart} .updateParent=${this.childUpdateRequest}></app-checkout>
+            </div>
             <div class="route" route="not-found">
               <app-not-found></app-not-found>
             </div>

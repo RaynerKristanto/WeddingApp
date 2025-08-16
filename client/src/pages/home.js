@@ -15,6 +15,7 @@
 import { LitElement, html } from 'lit';
 import cache from '../utils/cache.js';
 import styles from './styles/home.js';
+import { getUserList } from '../utils/fetch.js';
 import '../components/product-item.js';
 
 const sherray = new URL('../../assets/sherray.webp', import.meta.url).href;
@@ -36,17 +37,34 @@ export class Home extends LitElement {
     return styles;
   }
 
-  async disconnectedCallback() {
-    super.disconnectedCallback();
-    cache.deleteDB();
+  async firstUpdated() {
+    const userId = await cache.get('userId');
+    if (userId) {
+      const userList = await getUserList();
+      if (userList && !userList.apiError) {
+        const currentUser = userList.find(u => u.id === userId);
+        this.state = {
+          ...this.state,
+          status: 'loaded',
+          user: currentUser,
+        };
+      } else {
+        this.state = { ...this.state, status: 'loaded', user: null };
+      }
+    } else {
+      this.state = { ...this.state, status: 'loaded', user: null };
+    }
+    this.requestUpdate();
   }
 
   render() {
     return html`
       <div class="homeBase">
         <div class="titleContainer">
-          <img class="bg" src=${bg} alt="Bg"/>
-          <h3><a href="/sign-in">SIGN IN</a> TO</h3>
+          <img class="bg" src=${bg} alt="Bg" />
+          ${this.state.user
+            ? html`<h3>Welcome, ${this.state.user.first_name}</h3>`
+            : html`<h3><a href="/sign-in">SIGN IN</a> TO</h3>`}
           <h1>SHERRY & RAYNER'S</h1>
           <h2>W E D D I N G</h2>
           <img class="sherray" src=${sherray} alt="Sherray"/>

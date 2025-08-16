@@ -136,7 +136,7 @@ export class ProductList extends navigator(LitElement) {
                 </ul>
           </div>
           <div class="courseContainer">
-            <h2>Drinks</h2>
+            <h2>Hosted Bar</h2>
               <h3>Signature Drinks</h3>
                 <ul>
                   <li>Felix Felices</li>

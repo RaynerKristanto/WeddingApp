@@ -41,6 +41,12 @@ const styles = css`
     font-size: 1.4em;
   }
 
+  p a {
+    color: white;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
   .user-name {
     font-size: 1.4em;
     margin-left: 10px;

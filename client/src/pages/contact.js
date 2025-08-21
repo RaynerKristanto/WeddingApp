@@ -144,10 +144,8 @@ export class Contact extends navigator(LitElement) {
   let userId = params.get('userId');
 
   if (userId) {
-    console.log("if");
     this.userId = parseInt(userId, 10);
   } else {
-    console.log("else");
     this.userId = await cache.get('userId')
   }
     this.selectedUser = this.users.find(u => u.id === this.userId) || null;
@@ -187,7 +185,7 @@ export class Contact extends navigator(LitElement) {
                 ${this.selectedUser.points} Points
               </div>
             `
-          : html`<p>Sign in to see your stats.</p>`}
+          : html`<p><a href="/sign-in">Sign in</a> to see your stats.</p>`}
         </div>
         <div class="contactWrapper">
           ${this.users.map((user, index) => html`

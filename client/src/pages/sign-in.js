@@ -78,8 +78,8 @@ export class SignIn extends navigator(LitElement) {
     if (user && !user.apiError) {
       // Store the returned user ID in the cache
       await cache.set('userId', user.id);
-      // Navigate to the leaderboard page
-      this.navigate(`/contact?userId=${user.id}`);
+      // Navigate to the Home Page
+      this.navigate(`/?userId=${user.id}`);
     } else {
       // TODO: Show an error message to the user on the UI
       console.error('Failed to create user:', user?.apiError);

@@ -32,6 +32,9 @@ const styles = css`
     width: 100%;
   }
 
+  .signIn {
+    font-size: 1.4em;
+  }
   .points {
     position: fixed;
     bottom: 0px;

@@ -22,7 +22,7 @@ export class Shipping extends LitElement {
     this.missions = [];
     this.totalPoints = this.calculatePoints();
     this.toggleMission = this.toggleMission.bind(this);
-    this.status = 'loading';
+    this.status = 'loaded';
     this.userId = null;
     this.user = null;
   }
@@ -49,6 +49,8 @@ export class Shipping extends LitElement {
   }
 
   async toggleMission(index) {
+    if (!this.user) return;
+
     const missionToUpdate = this.missions[index];
     const originalStatus = missionToUpdate.status;
     const newStatus =  missionToUpdate.status === 'complete' ? 'incomplete' : 'complete';
@@ -59,7 +61,7 @@ export class Shipping extends LitElement {
     );
 
     this.user.points = this.calculatePoints();
-    console.log("user: ", this.user);
+    this.requestUpdate(); // Optimistic UI update
 
     // Persist change to backend
     const result = await updateMissionStatus(this.userId, missionToUpdate.mission_id, newStatus === 'complete');
@@ -71,40 +73,53 @@ export class Shipping extends LitElement {
         i === index ? { ...mission, status: originalStatus } : mission
       );
       this.user.points = this.calculatePoints();
+      this.requestUpdate(); // Revert UI
     }
-    this.requestUpdate();
-    // await this.loadData();
   }
 
   async loadData() {
-    this.status = 'loading';
-    this.requestUpdate();
-
     const params = new URLSearchParams(window.location.search);
     let userId = params.get('userId');
-    
-   if (userId) {
-      console.log("if");
+
+    if (userId) {
       this.userId = parseInt(userId, 10);
     } else {
-      console.log("else");
       this.userId = await cache.get('userId')
     }
 
-    let missionList = await getMissionsForUser(this.userId);
-    let userList = await getUserList(); 
-    if (missionList && !missionList.apiError) {
-      this.missions = missionList.map(m => (
-        { ...m, status: m.completed ? 'complete' : 'incomplete' }));
-    } else {
-      console.error(
-        'Could not fetch user list for leaderboard',
-        missionList?.apiError
-      );
+    if (!this.userId) {
+      this.status = 'loaded';
+      this.user = null;
+      this.missions = [];
+      this.requestUpdate();
+      return;
     }
-    this.user = userList.find(u => u.id === this.userId);
-    console.log("user: ", this.user);
-    this.user.points = this.calculatePoints();
+
+    this.status = 'loading';
+    this.requestUpdate();
+
+    const [missionList, userList] = await Promise.all([
+      getMissionsForUser(this.userId),
+      getUserList(),
+    ]);
+
+    if (userList && !userList.apiError) {
+      this.user = userList.find(u => u.id === this.userId);
+    } else {
+      console.error('Could not fetch user list for missions page', userList?.apiError);
+      this.user = null;
+    }
+
+    if (missionList && !missionList.apiError) {
+      this.missions = missionList.map(m => ({ ...m, status: m.completed ? 'complete' : 'incomplete' }));
+    } else {
+      console.error('Could not fetch missions for user', missionList?.apiError);
+      this.missions = [];
+    }
+
+    if (this.user) {
+      this.user.points = this.calculatePoints();
+    }
 
     this.status = 'loaded';
     this.requestUpdate();
@@ -117,7 +132,6 @@ export class Shipping extends LitElement {
   }
 
   render() {
-
     if (this.status === 'loading') {
       return html`<div class="shippingContainer">
         <h1>Missions</h1>
@@ -125,21 +139,32 @@ export class Shipping extends LitElement {
       </div>`;
     }
 
+    if (!this.userId) {
+      return html`
+        <div class="shippingContainer">
+          <h1>Missions</h1>
+          <p class="signIn">
+            <a href="/sign-in">Sign in</a> to see the missions.
+          </p>
+        </div>
+      `;
+    }
+
     return html`
       <div class="shippingContainer">
         <h1>Missions</h1>
         <div class="shippingWrapper">
-            ${this.missions.map((m, i) => html`
-              <mission-item 
-                .mission=${m} 
-                .index=${i} 
-                @toggle-mission=${(e) => this.toggleMission(e.detail.index)}>
-              </mission-item>
-            `)}
+          ${this.missions.map((m, i) => html`
+            <mission-item 
+              .mission=${m} 
+              .index=${i} 
+              @toggle-mission=${(e) => this.toggleMission(e.detail.index)}>
+            </mission-item>
+          `)}
         </div>
       </div>
       <div class="points">
-        <div class="total-points">Total Points: ${this.user.points}</div>
+        <div class="total-points">Total Points: ${this.user?.points || 0}</div>
       </div>
     `;
   }

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { LitElement, html } from 'lit';
+import { navigator } from '../vendor/lit-element-router-2.0.3a/lit-element-router.js';
 import cache from '../utils/cache.js';
 import styles from './styles/home.js';
 import { getUserList } from '../utils/fetch.js';
@@ -21,7 +22,7 @@ import '../components/product-item.js';
 const sherray = new URL('../../assets/sherray.webp', import.meta.url).href;
 const bg = new URL('../../assets/wc.png', import.meta.url).href;;
 
-export class Home extends LitElement {
+export class Home extends navigator(LitElement) {
 
   constructor() {
     super();
@@ -37,18 +38,48 @@ export class Home extends LitElement {
     return styles;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.handleRouteChange = this.handleRouteChange.bind(this);
+    window.addEventListener('route', this.handleRouteChange);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('route', this.handleRouteChange);
+    super.disconnectedCallback();
+  }
+
   async firstUpdated() {
-    const userId = await cache.get('userId');
+    await this.loadUserData();
+  }
+
+  async handleRouteChange() {
+    if (window.location.pathname === '/') {
+      await this.loadUserData();
+    }
+  }
+
+  async loadUserData() {
+    const params = new URLSearchParams(window.location.search);
+    let userId = params.get('userId');
+
     if (userId) {
+      this.userId = parseInt(userId, 10);
+    } else {
+      this.userId = await cache.get('userId')
+    }
+
+    if (this.userId) {
       const userList = await getUserList();
       if (userList && !userList.apiError) {
-        const currentUser = userList.find(u => u.id === userId);
+        const currentUser = userList.find(u => u.id === this.userId);
         this.state = {
           ...this.state,
           status: 'loaded',
           user: currentUser,
         };
       } else {
+        console.error('Could not fetch user list for home page', userList?.apiError);
         this.state = { ...this.state, status: 'loaded', user: null };
       }
     } else {

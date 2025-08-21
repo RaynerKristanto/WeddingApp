@@ -48,6 +48,7 @@ const styles = css`
     z-index: -1; 
     object-fit: cover;
   }
+
   
    h1 {
     font-family: var(--site-name-font);
@@ -72,7 +73,7 @@ const styles = css`
 
   h3 {
     font-family: var(--base-font);
-    font-size: 20px;
+    font-size: 23px;
     color: var(--site-name-color);
     margin-bottom: 5px;
   }
@@ -80,6 +81,7 @@ const styles = css`
   h3 a {
     color: var(--site-name-color);
     text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
     -webkit-tap-highlight-color: transparent;
   }
   

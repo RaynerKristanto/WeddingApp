@@ -35,6 +35,11 @@ const styles = css`
   .signIn {
     font-size: 1.4em;
   }
+
+  .signIn a {
+    color: var(--color-secondary);
+  }
+    
   .points {
     position: fixed;
     bottom: 0px;

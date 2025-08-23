@@ -78,6 +78,10 @@ const styles = css`
       margin-right: 10px;
       font-size: 1.2em;
   }
+
+  a {
+    color: var(--color-secondary);
+  }
 `;
 
 export default styles;

@@ -14,7 +14,7 @@
 
 import { LitElement, html } from 'lit';
 import { navigator } from '../vendor/lit-element-router-2.0.3a/lit-element-router.js';
-import styles from './styles/product.js';
+import styles from './styles/scavenger-hunt.js';
 
 
 export class ScavengerHunt extends navigator(LitElement) {
@@ -48,54 +48,65 @@ export class ScavengerHunt extends navigator(LitElement) {
       <div class="productContainer">
         <h1>Scavenger Hunt</h1>
         <div class="productWrapper">
-          <div class="courseContainer">
-            <div class="course">Tray-Passed Appetizers</div>
-                <ul>
-                  <li> Shiso Honey Prawns</li>
-                  <li class="desc">Served with spiced mango sauce<li>
-                  <li> Pork Belly Spoons</li>
-                  <li class="desc">Served with grilled peach poblano chutney (GF)<li>
+          <div class="riddleContainer">
+            <div class="number">1</div>
+                <div class="riddle">
+                  Catch me if you can — I’m fast and bright, golden and small, a true seeker’s delight.
+                </div>
           </div>
-          <div class="courseContainer">
-            <div class="course">Salad and Bread Service</div>
-                <ul>
-                  <li>Salad</li>
-                  <li class="desc">Served with (V)<li>
-                  <li>Chef's Selection of Macrina Rolls</li>
-                  <li class="desc">With a choice of whipped, herbed chive blossom butter, 
-                  or roasted garlic butter<li>
+          <div class="riddleContainer">
+            <div class="number">2</div>
+                <div class="riddle">
+                  Misspelled and squashed, but made with care, find the sweet start of Harry's magical affair.
+                </div>
           </div>
-          <div class="courseContainer">
-            <div class="course">Entrees</div>
-                <ul>
-                  <li>Herb-Crusted Sirloin</li>
-                  <li class="desc">Served with wild mushroom demi glaze (GF)<li>
-                  <li>Citrus Rubbed Salmon</li>
-                  <li class="desc">Served with honey lemon coriander sauce (GF)<li>
+          <div class="riddleContainer">
+            <div class="number">3</div>
+                <div class="riddle">
+                  Snowy white and wise, this loyal friend flies. Find the messenger who through night skies flies.
+                </div>
           </div>
-          <div class="courseContainer">
-            <div class="course">Sides</div>
-                <ul>
-                  <li>Cilantro Lime Rice</li>
-                  <li class="desc">Jasmine rice, cilantro, lime (V, GF)<li>
-                  <li>Foraged Mushrooms</li>
-                  <li class="desc">PNW wild mushrooms, onions, garlic butter (Veg, GF)<li>
+          <div class="riddleContainer">
+            <div class="number">4</div>
+                <div class="riddle">
+                  Blank pages hide dark secrets within. Find the book where Riddle's memories begin.
+                </div>
           </div>
-          <div class="courseContainer">
-            <div class="course">Taco Bar</div>
-                <ul>
-                  <li>Carne Asada</li>
-                  <li class="desc">Grilled steak<li>
-                  <li>Al Pastor</li>
-                  <li class="desc">Spicy pork with pineapple<li>
-                  <li>Vegetariano</li>
-                  <li class="desc">Veggies (V)<li>
+          <div class="riddleContainer">
+            <div class="number">5</div>
+                <div class="riddle">
+                  Not what you are, but what you crave — Find the glass that doesn’t behave.
+                </div>
           </div>
-          <div class="courseContainer">
-            <div class="course">Dessert</div>
-                <ul>
-                  <li>Cake</li>
-                  <li class="desc">Oreo, cheese mango, matcha yuzu<li>
+          <div class="riddleContainer">
+            <div class="number">6</div>
+                <div class="riddle">
+                  Where do you belong? Find the wise hat that sorts, and learn which house is your strongest fort.
+                </div>
+          </div>
+          <div class="riddleContainer">
+            <div class="number">7</div>
+                <div class="riddle">
+                  To save the day, turn back the hour. Find the golden hourglass and regain lost power.
+                </div>
+          </div>
+          <div class="riddleContainer">
+            <div class="number">8</div>
+                <div class="riddle">
+                  Mischief managed, but only when you find this map that shows all paths and secrets hidden from plain sight.
+                </div>
+          </div>
+          <div class="riddleContainer">
+            <div class="number">9</div>
+                <div class="riddle">
+                  Seek out Luna’s quirky gift, hidden well for you to find. Put these on, and creatures of the unseen will show their kind.
+                </div>
+          </div>
+          <div class="riddleContainer">
+            <div class="number">10</div>
+                <div class="riddle">
+                  Shiny and small, I just can't resist — Check where coins or trinkets might exist.
+                </div>
           </div>
         </div>
       </div>

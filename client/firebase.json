@@ -1,13 +1,14 @@
 {
   "hosting": {
+    "target": "bf6a",
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "/api/**",
         "run": {
-          "serviceId": "server",
-          "region": "us-central1"
+          "serviceId": "server-bf6a",
+          "region": "us-west1"
         }
       }
     ]

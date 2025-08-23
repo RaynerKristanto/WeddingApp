@@ -1,4 +1,4 @@
-{
+export default {
     "1": [
       "Chiara",
       "Bianca",
@@ -120,4 +120,4 @@
       "Mario",
       "FeiFei"
     ]
-  }
+  };

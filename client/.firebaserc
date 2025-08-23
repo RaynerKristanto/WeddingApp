@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "staging": "wedding-app-469918"
+  },
+  "targets": {
+    "wedding-app-469918": {
+      "hosting": {
+        "bf6a": [
+          "wedding-app-469918-bf6a"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

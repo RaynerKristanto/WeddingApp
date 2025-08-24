@@ -45,7 +45,7 @@ const styles = css`
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    z-index: -1; 
+    z-index: -2; 
     object-fit: cover;
   }
 

@@ -1,123 +1,114 @@
+
 export default {
-    "1": [
-      "Chiara",
-      "Bianca",
-      "Aldi",
-      "Calista",
-      "Clea",
-      "Daniel",
-      "Audrey",
-      "Samuel",
-      "Josh"
-    ],
-    "2": [
-      "Brandon",
-      "Andrew K",
-      "Clarissa",
-      "Jordan",
-      "Bowen"
-    ],
-    "3": [
-      "Yuanjin",
-      "Siqi",
-      "Lily",
-      "Shawn",
-      "Guanghao"
-    ],
-    "4": [
-      "Andreas",
-      "Xiangdong",
-      "Fahai",
-      "Edmond",
-      "Katherine",
-      "Sherry",
-      "Melgi"
-    ],
-    "5": [
-      "Janti",
-      "Digna",
-      "Anton",
-      "Susy",
-      "Danyanthi",
-      "Judith",
-      "Rayner"
-    ],
-    "6": [
-      "Roy",
-      "Meidy",
-      "Silvia",
-      "Eli",
-      "Boy",
-      "Scott",
-      "Sally",
-      "Engelhard",
-      "Carly"
-    ],
-    "7": [
-      "Karen",
-      "Kismet",
-      "Esther",
-      "Daniel W",
-      "Marjono",
-      "Julianti",
-      "Felicia"
-    ],
-    "8": [
-      "Jingbo",
-      "Kaiyu",
-      "Haiming",
-      "Wanyu",
-      "Yan",
-      "Yi Z",
-      "Yi C"
-    ],
-    "9": [
-      "Rongrong",
-      "Yutong",
-      "Amanda",
-      "Yangyang",
-      "Yingrong",
-      "Grant",
-      "Renfeng",
-      "Zixuan"
-    ],
-    "10": [
-      "Will",
-      "Annie",
-      "Lucia",
-      "Hsiaoma",
-      "Adrian",
-      "Maya",
-      "Tianyang"
-    ],
-    "11": [
-      "Andrew L",
-      "Jason S",
-      "Ingrid",
-      "Juno",
-      "Jason W",
-      "Chris",
-      "Daryl",
-      "Rainbow",
-      "Joshua"
-    ],
-    "12": [
-      "Mengqi",
-      "Andy",
-      "Mehul",
-      "Aishwarya",
-      "Mike",
-      "Rachana",
-      "Adithya",
-      "Joey"
-    ],
-    "13": [
-      "Catherine",
-      "Mengfan",
-      "David",
-      "Jessica",
-      "Yao",
-      "Mario",
-      "FeiFei"
-    ]
-  };
+  "1": [
+    "Bowen",
+    "Shawn",
+    "Lily",
+    "Clarissa",
+    "Siqi",
+    "Yuanjin",
+    "Josh"
+  ],
+  "2": [
+    "Andrew K",
+    "Daniel",
+    "Samuel",
+    "Audrey",
+    "Jordan",
+    "Chiara",
+    "Callista",
+    "Bianca"
+  ],
+  "3": [
+    "Aldi",
+    "Fahai",
+    "Xiangdong",
+    "Sherry",
+    "Clea",
+    "Edmond",
+    "Katherine",
+    "Andreas"
+  ],
+  "4": [
+    "Rayner",
+    "Anton",
+    "Susy",
+    "Melgi",
+    "Meidy",
+    "Danya",
+    "Janti",
+    "Judith",
+    "Digna"
+  ],
+  "5": [
+    "Meidy",
+    "Roy",
+    "Eli",
+    "Silvia",
+    "Boy",
+    "Sally",
+    "Carly"
+  ],
+  "6": [
+    "Marjono",
+    "Julianti",
+    "Krismet",
+    "Karen",
+    "Engelhard",
+    "Felicia",
+    "Esther",
+    "Daniel"
+  ],
+  "7": [
+    "Zixuan",
+    "Tianyang",
+    "Yangyang",
+    "Maya",
+    "Amanda"
+  ],
+  "8": [
+    "Yutong",
+    "Chenyi",
+    "Wanyu",
+    "Haiming",
+    "Rongrong",
+    "Zhangyi",
+    "Wuyan",
+    "Jingbo"
+  ],
+  "9": [
+    "Xueyi",
+    "Xsiaoma",
+    "Lucia",
+    "Kaiyu",
+    "Annie",
+    "Will"
+  ],
+  "10": [
+    "Jason S",
+    "Daryl",
+    "Rainbow",
+    "Jason W",
+    "Andrew L",
+    "Chris",
+    "Juno",
+    "Ingrid"
+  ],
+  "11": [
+    "Joshua",
+    "Caroline",
+    "Adithya",
+    "Rachana",
+    "Andy",
+    "Mehul",
+    "Mike T"
+  ],
+  "12": [
+    "Mengfan",
+    "Yao",
+    "Jessica",
+    "DavidNi",
+    "Mario",
+    "Feifei"
+  ]
+};

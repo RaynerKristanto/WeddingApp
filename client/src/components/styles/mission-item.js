@@ -80,7 +80,7 @@ const styles = css`
   }
 
   a {
-    color: var(--color-secondary);
+    color: var(--site-name-color);
   }
 `;
 

@@ -54,9 +54,9 @@ export class ProductList extends navigator(LitElement) {
           <div class="courseContainer">
             <h2>Tray-Passed Appetizers</h2>
                 <ul>
-                  <li> Shiso Honey Prawns</li>
+                  <li>Shiso Honey Prawns</li>
                   <li class="desc">Served with spiced mango sauce<li>
-                  <li> Pork Belly Spoons</li>
+                  <li>Pork Belly Spoons</li>
                   <li class="desc">Served with grilled peach poblano chutney (GF)<li>
                 </ul>
           </div>

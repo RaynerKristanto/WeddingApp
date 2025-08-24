@@ -82,7 +82,7 @@ export class Contact extends navigator(LitElement) {
     this.users = [];
     this.selectedUser = null;
     this.userId = null; 
-    this.status = 'loading';
+    this.status = 'loaded';
   }
 
   connectedCallback() {
@@ -134,20 +134,21 @@ export class Contact extends navigator(LitElement) {
 
   async _updateSelectedUserFromURL() {
 
-   if (this.users.length === 0) {
-    console.log("Users is empty, can't update selected user from URL yet.");
-    this.selectedUser = null;
-    return; // Exit early if users are not loaded
-  }
+    if (this.users.length === 0) {
+      console.log("Users is empty, can't update selected user from URL yet.");
+      this.selectedUser = null;
+      return; // Exit early if users are not loaded
+    }
 
-  const params = new URLSearchParams(window.location.search);
-  let userId = params.get('userId');
+    const params = new URLSearchParams(window.location.search);
+    let userId = params.get('userId');
 
-  if (userId) {
-    this.userId = parseInt(userId, 10);
-  } else {
-    this.userId = await cache.get('userId')
-  }
+    if (userId) {
+      this.userId = parseInt(userId, 10);
+    } else {
+      this.userId = await cache.get('userId')
+    }
+
     this.selectedUser = this.users.find(u => u.id === this.userId) || null;
     console.log("selectedUser: ", this.selectedUser);
     console.log("userId: ", this.userId);
@@ -166,12 +167,6 @@ export class Contact extends navigator(LitElement) {
       </div>`;
     }
 
-    if (this.users.length === 0) {
-      return html`<div class="contactContainer">
-        <h1>Leaderboard</h1>
-        <p>Leaderboard is empty.</p>
-      </div>`;
-    }
     return html`
       <div class="contactContainer">
         <h1>Leaderboard</h1>
@@ -187,16 +182,15 @@ export class Contact extends navigator(LitElement) {
             `
           : html`<p><a href="/sign-in">Sign in</a> to see your stats.</p>`}
         </div>
-        <div class="contactWrapper">
-          ${this.users.map((user, index) => html`
-            <leaderboard-item
-              .rank=${index + 1}
-              .imageSrc=${user.image || noimage}
-              .name=${`${user.first_name} ${user.last_name}`}
-              .points=${user.points}
-            ></leaderboard-item>
-          `)}
-        </div>
+        ${this.users.length > 0
+          ? html`
+              <div class="contactWrapper">
+                ${this.users.map((user, index) => html`
+                  <leaderboard-item .rank=${index + 1} .imageSrc=${user.image || noimage} .name=${`${user.first_name} ${user.last_name}`} .points=${user.points}></leaderboard-item>
+                `)}
+              </div>
+            `
+          : html`<p>Leaderboard is empty.</p>`}
       </div>
     `;
   }

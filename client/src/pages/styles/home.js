@@ -82,7 +82,6 @@ const styles = css`
     color: var(--site-name-color);
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
-    -webkit-tap-highlight-color: transparent;
   }
   
   h3 a:hover{

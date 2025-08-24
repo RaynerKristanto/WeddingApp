@@ -1,4 +1,4 @@
-{
+export default {
   "1": [
     "Rayner",
     "Sherry",
@@ -192,4 +192,4 @@
     "Jovanda",
     "Jared"
   ]
-}
+};

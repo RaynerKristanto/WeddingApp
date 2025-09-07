@@ -62,7 +62,6 @@ export default {
   "7": [
     "Zixuan",
     "Tianyang",
-    "Yangyang",
     "Maya",
     "Amanda"
   ],

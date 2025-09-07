@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import styles from './styles/seating-chart.js';
 
-import tablesJson from '../../table.js';
+import tablesJson from '../../atlanta.js';
 
 export class SeatingChart extends LitElement {
   static properties = {

@@ -16,6 +16,7 @@ export default {
     "Linda",
     "Janti",
     "Judith",
+    "Digna",
     "Melchiada",
     "Antonius",
     "Susy",
@@ -24,13 +25,13 @@ export default {
     "Sam"
   ],
   "3": [
-    "Felix",
-    "Rachel",
-    "Hudson",
-    "Mila",
-    "Olivia",
-    "Cindy",
-    "Timmy",
+    "Rita",
+    "Bill",
+    "Fitriana",
+    "Adam",
+    "Brenda",
+    "Royke",
+    "Meidy",
     "Bianca",
     "Aldi E",
     "Calista",
@@ -43,10 +44,10 @@ export default {
     "Kaiden",
     "Ella",
     "Audrey A",
-    "Lis",
-    "Donny",
-    "Yung",
-    "Hadi",
+    "Angelina",
+    "Eddy",
+    "Virginia",
+    "Louis L",
     "Mia"
   ],
   "5": [
@@ -75,31 +76,32 @@ export default {
   "7": [
     "Louis P",
     "Natalie",
+    "Widianto",
+    "Helen",
+    "Mus",
+    "Rubina",
     "Rendy",
-    "Alfredo",
-    "Thomas",
-    "Mitch",
-    "Rich S",
-    "Debbie S",
-    "Rich M"
+    "Jordan",
+    "Christella",
+    "Ryan"
   ],
   "8": [
     "Suzanne",
     "Russell",
     "Kristine",
-    "Evi",
-    "John W",
-    "Rachel G",
-    "John G",
-    "Brenda",
-    "Christella",
-    "Ryan"
+    "Thomas",
+    "Alfredo",
+    "Mitch",
+    "Debbie S",
+    "Rich S",
+    "Tina",
+    "Rich M"
   ],
   "9": [
-    "Rita",
-    "Bill",
-    "Fitriana",
-    "Adam",
+    "Evi",
+    "John W",
+    "Rachel",
+    "John G",
     "Ben",
     "Yanti",
     "Valetta",
@@ -114,6 +116,7 @@ export default {
     "Kevin",
     "Cecilia",
     "Jiang",
+    "Hadi",
     "Don",
     "Ting",
     "Priscilla H",
@@ -151,7 +154,7 @@ export default {
     "Agatha",
     "Natasha",
     "Priscilla S",
-    "Jeanette",
+    "Yung Chin",
     "Alietha",
     "Abigail",
     "Maudy"
@@ -181,15 +184,9 @@ export default {
     "Benny"
   ],
   "16": [
-    "Angelina",
-    "Eddy",
-    "Louis L",
-    "Virginia",
-    "Widianto",
-    "Helen",
-    "Mus",
-    "Rubina",
-    "Jovanda",
-    "Jared"
+    "Conny",
+    "Hanny",
+    "Kassandra"
+    
   ]
 };
